@@ -1,0 +1,20 @@
+<header class="header">
+    {{ gtm_config_body gtm_id: common.gtm_id }}
+    {{ gtm_page_view store: store }}
+    {{ header_top position: "Topo Header" }}
+    {{ header_middle position: "Topo Header" }}
+    {{ header_navbar menu_groups: common.menu_groups categories: common.categories position: "Topo Header" }}
+</header>
+<div class="overlay"></div>
+
+<script>
+    if (window.matchMedia("(min-width: 1026px)").matches) {
+        $(".navigate-container__item").mouseover(function () {
+            $(".overlay").addClass("overlay-aberto");
+        });
+        $(".navigate-container__item").mouseout(function () {
+            $(".overlay").removeClass("overlay-aberto");
+        });
+    }
+    $(".overlay").removeClass("overlay-aberto");
+</script>

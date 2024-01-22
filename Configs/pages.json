@@ -1,0 +1,65 @@
+[
+  {
+    "type": "search",
+    "path": "search.html",
+    "query": "search.graphql"
+  },
+  {
+    "type": "hotsite",
+    "path": "hotsite.html",
+    "query": "hotsite.graphql",
+    "customs": [
+      {
+        "urlMatch": "",
+        "path": "home.html",
+        "query": "home.graphql"
+      },
+      {
+        "urlMatch": "lista-compra|personalizacao|matriz-atributo|compre-junto|assinatura"
+      },
+      {
+        "urlMatch": "meus-favoritos",
+        "path": "custom/wishlist.html"
+      },
+      {
+        "urlMatch": "buybox",
+        "path": "custom/buy_box_hotsite.html",
+        "query": "buy_box_hotsite.graphql"
+      },
+      {
+        "urlMatch": "*",
+        "subtype": "brand",
+        "path": "custom/brands.html",
+        "priority": 10
+      },
+      {
+        "urlMatch": "sobre|central-de-atendimento|compra-segura|formas-de-pagamento|localizacao|trocas-e-devolucoes|politica-de-privacidade",
+        "path": "custom/institutional.html",
+        "query": "about.graphql"
+      }
+    ]
+  },
+  {
+    "type": "product",
+    "path": "product.html",
+    "query": "product.graphql",
+    "customs": [
+      {
+        "productIds": [100129],
+        "path": "custom/buy_box_product.html",
+        "query": "buy_box_product.graphql",
+        "priority": 11
+      }
+    ]
+  },
+  {
+    "type": "buy_list",
+    "path": "buy_list.html",
+    "query": "buy_list.graphql"
+  },
+  {
+    "type": "not_found",
+    "path": "not_found.html",
+    "query": "not_found.graphql"
+  }
+]

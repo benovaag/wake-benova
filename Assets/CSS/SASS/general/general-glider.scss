@@ -1,0 +1,33 @@
+.glider-slide {
+    min-width: auto;
+}
+
+.glider-track {
+    margin: 0 auto;
+}
+
+.glider::-webkit-scrollbar {
+    height: 0;
+    background-color: transparent;
+}
+
+.glider-dot {
+    background: transparent;
+    border: 1px solid #0FAE5A;
+    margin: 5px;
+    transition: .2s linear;
+
+    &.active, &:hover {
+        background:  #0FAE5A;
+    }
+
+    @include device(desktop) {
+        width: 16px;
+        height: 16px;
+      }
+
+    @include device(mobile) {
+        width: 12px;
+        height: 12px;
+    }
+}

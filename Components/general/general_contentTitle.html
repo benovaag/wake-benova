@@ -1,0 +1,7 @@
+{{func map_content(c)
+ret c.title == title
+end}}
+
+{{for content in contents | array.filter @map_content}}
+{{content.content}}
+{{end}}

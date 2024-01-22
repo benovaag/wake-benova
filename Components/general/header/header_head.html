@@ -1,0 +1,52 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{{~ capture favicon_source ~}}
+{{- store.urls.static_img}}{{ settings.favicon_path }}?theme={{store.theme -}}&v={{store.last_modified}}
+{{~ end ~}}
+<link rel="icon" href="{{ favicon_source }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+{{ asset type: "js" paths: [
+"glider.min.js",
+"global.js",
+
+"components",
+
+"jquery.min.js"
+]}}
+
+{{ asset type: "css" paths: ["glider.min"]}}
+
+{{ sdk_client }}
+
+{{ gtm_config_head gtm_id: common.gtm_id }}
+
+<!-- Resolve o seguinte problema relatado pelo Page Speed: Marque os listeners de eventos de toque e rolagem como passive para melhorar a performance de rolagem da página. -->
+<script>
+    // Define o comportamento padrão para eventos de toque e rolagem
+    let passiveSupported = false;
+
+    try {
+        const options = Object.defineProperty({}, 'passive', {
+            get: function () {
+                passiveSupported = true;
+            }
+        });
+
+        window.addEventListener('test', null, options);
+        window.removeEventListener('test', null, options);
+    } catch (err) {
+        passiveSupported = false;
+    }
+
+    // Adiciona o comportamento padrão para eventos de toque e rolagem
+    const eventListenerOptions = passiveSupported ? { passive: true } : false;
+    document.addEventListener('touchstart', function () { }, eventListenerOptions);
+    document.addEventListener('touchmove', function () { }, eventListenerOptions);
+    document.addEventListener('wheel', function () { }, eventListenerOptions);
+    document.addEventListener('mousewheel', function () { }, eventListenerOptions);
+    document.addEventListener('DOMMouseScroll', function () { }, eventListenerOptions);
+</script>

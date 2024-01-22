@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+  {{ meta_tags seo: data.hotsite.seo }}
+  {{ header_head }}
+  {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
+  {{ asset type: "css" paths: ["theme.min"]}}
+  {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+</head>
+
+<body>
+  {{ header }}
+
+  <div class="institutional content">
+    <div class="institutional-menu">
+      <button type="button" class="institutional-button">
+        Menu Institucionais
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 5.701 10.245">
+          <g id="Esquerda" transform="translate(5.701 10.245) rotate(180)">
+            <path id="path9429" d="M.67,0a.638.638,0,0,0-.6.475.8.8,0,0,0,.19.816l3.849,3.82L.256,8.929a.786.786,0,0,0-.248.7.707.707,0,0,0,.427.577.57.57,0,0,0,.638-.177L5.48,5.665a.806.806,0,0,0,0-1.109L1.073.184A.584.584,0,0,0,.67,0Z" transform="translate(0 0)" fill="#FFF" />
+          </g>
+        </svg>
+      </button>
+      <ul class="institutional-menu__items">
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/sobre">Sobre a Curipeças</a>
+        </li>
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/central-de-atendimento">Central de Atendimento</a>
+        </li>
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/compra-segura">Compra Segura</a>
+        </li>
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/formas-de-pagamento">Formas de Pagamento</a>
+        </li>
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/localizacao">Localização</a>
+        </li>
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/trocas-e-devolucoes">Trocas e Devoluções</a>
+        </li>
+        <li class="institutional-menu__item">
+          <a class="institutional-menu__href" href="/politica-de-privacidade">Política de Privacidade</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="institutional-column">
+      {{ general_contentPosition contents: data.hotsite.contents position: "Centro" }}
+    </div>
+  </div>
+
+  {{ footer }}
+
+  {{ asset type: "js" paths: [
+  "institutional/institutional"
+  ] options: "async"}}
+</body>
+
+</html>

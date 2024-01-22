@@ -1,0 +1,54 @@
+{{ ##
+Description: Renders the buy together single product view
+Params:
+- product: buy list single product data
+Usage:
+buy_together_product_view product: product
+## }}
+{{~
+product_id = product.product_id
+product_available = false
+product_variant_id = ""
+product_stock = 0
+~}}
+{{~ if product.attribute_selections.selected_variant ~}}
+{{~ product_variant_id = product.attribute_selections.selected_variant.product_variant_id ~}}
+{{~ product_available = product.attribute_selections.selected_variant.available ~}}
+{{~ product_stock = product.attribute_selections.selected_variant.stock ~}}
+{{~ else if product.attribute_selections.selections.size == 0 ~}}
+{{~ product_variant_id = product.product_variant_id ~}}
+{{~ product_available = product.available ~}}
+{{~ product_stock = product.stock ~}}
+{{~ else ~}}
+{{~ product_variant_id = product.product_variant_id ~}}
+{{~ end ~}}
+
+<div class="buy-together__spot">
+    {{ spot_image product: product }}
+
+    <p class="buy-together__name">{{ product.product_name }}</p>
+
+    {{ if product.prices }}
+    <div class="spot-price">
+        {{ spot_price prices: product.prices }}
+    </div>
+    {{ end }}
+
+    <div class="buy-together__flex">
+        <p>Quantidade</p>
+        <input type="number" class="buy-together__qtd" product-variant-id="{{ product_variant_id }}" name="selected-quantity" value="1" min="1" max="{{ product_stock }}" onchange="buyTogetherQuantityOnChange(this)" aria-label="Quantidade">
+    </div>
+
+    {{~ attribute_selections = product.attribute_selections ~}}
+    {{~ if attribute_selections.can_be_matrix ~}}
+    {{ product_attributeMatrix attribute_selections: attribute_selections }}
+    {{~ else ~}}
+    <input product-available type="hidden" name="product-available-{{ product_id }}" value="{{ product_available }}">
+    {{~
+    product_attributeCombo attribute_selections: attribute_selections product_id: product_id
+    product_attributeDiv attribute_selections: attribute_selections product_id: product_id
+    product_attributeImage attribute_selections: attribute_selections product_id: product_id
+    product_attributeColor attribute_selections: attribute_selections product_id: product_id
+    ~}}
+    {{~ end ~}}
+</div>

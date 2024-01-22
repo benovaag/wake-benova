@@ -1,0 +1,195 @@
+.category-filter {
+
+    .category-filter__button {
+        @include device(desktop) {
+            display: none;
+        }
+
+        @include device(mobile) {
+            background: #10C967;
+            border: 1px solid #10C967;
+            border-radius: 5px;
+            padding: 8px 20px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 500;
+            width: 100%;
+            min-height: 50px;
+        }
+    }
+    
+    .category-items {
+        @include device(mobile) {
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s linear;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            right: 0;
+            height: 100%;
+            background: #FFF;
+            overflow-y: scroll;
+            padding-top: 45px;
+
+            &.open-filter {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .category-filter__button-close {
+                background: transparent;
+                border: none;
+                font-size: 18px;
+                font-weight: bold;
+                color: #000;
+                position: absolute;
+                right: 25px;
+                top: 25px;
+            }
+        }
+
+        .filter-combo {
+            background: #FFF;
+            border-radius: 10px;
+
+            @include device(desktop) {
+                padding: 25px;
+                margin-bottom: 15px;
+            }
+
+            @include device(mobile) {
+                padding: 25px 25px 10px 25px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .filter-name {
+                color: #000;
+                font-weight: 800;
+                cursor: pointer;
+                font-size: 16px;
+                line-height: normal;
+
+                @include device(desktop) {
+                    padding-bottom: 15px;
+                }
+
+                @include device(mobile) {
+                    padding-bottom: 15px;
+                }
+            }
+        }
+    }
+
+    .filter-items {
+
+        &.filter-items__color {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+
+            input {
+                display: none;
+            }
+
+            img {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                border: 1px solid #CBCBCC;
+                cursor: pointer;
+            }
+        }
+
+
+        .filter-items__item {
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+
+            .filter-items__check {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                width: 15px;
+                z-index: 1;
+                height: 15px !important;
+                left: 0;
+                margin: 0 !important;
+            }
+
+            .filter-items__checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 15px;
+                width: 15px;
+                background: #CFCFCF;
+                border: 1px solid #CFCFCF;
+                border-radius: 3px;
+            }
+
+            .filter-items__checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+            .filter-items__check:checked~.filter-items__checkmark {
+                background-color: #0FAE5A;
+                border: 1px solid #0FAE5A;
+            }
+        }
+
+        .filter-items__name {
+            color: #232323;
+            font-weight: 400;
+            opacity: .7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            @include device(desktop) {
+                font-size: 14px;
+                line-height: 14px;
+            }
+
+            @include device(mobile) {
+                font-size: 16px;
+                line-height: normal;
+            }
+        }
+    }
+
+    #verMaisBtn {
+        display: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        font-size: 10px;
+        color: #000;
+        text-decoration: underline;
+        font-weight: 600;
+        outline: none;
+        cursor: pointer;
+    }
+}

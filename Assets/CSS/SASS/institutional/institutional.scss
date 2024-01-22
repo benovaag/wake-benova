@@ -1,0 +1,144 @@
+.institutional {
+  padding-top: 40px;
+  padding-bottom: 100px;
+  color: #1d1d1b;
+  display: flex;
+
+  @include device(desktop) {
+    align-items: flex-start;
+    gap: 100px;
+  }
+  @include device(mobile) {
+    flex-direction: column;
+  }
+
+  .pagamentos {
+    display: flex;
+    gap: 5px;
+  }
+
+  .institutional-button {
+    @include device(desktop) {
+      display: none;
+    }
+    @include device(mobile) {
+      background: #7F00A6;
+      border: none;
+      font-size: 14px;
+      line-height: normal;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 5px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 20px;
+
+      &.active {
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+
+      svg {
+        transform: rotate(-90deg);
+        width: 20px;
+        height: 20px;
+        transition: .2s linear;
+      }
+    }
+  }
+
+  img {
+    width: 100% !important;
+    max-width: fit-content;
+    object-fit: contain;
+    height: auto !important;
+  }
+
+  .institutional-menu {
+    @include device(desktop) {
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 20px #00000026;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 270px;
+      padding: 10px;
+    }
+
+    .institutional-menu__item:last-child {
+      .institutional-menu__href {
+        margin-bottom: 0;
+      }
+    }
+
+    .institutional-menu__items {
+      @include device(mobile) {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        transition: .2s linear;
+
+        &.active {
+          opacity: 1;
+          visibility: visible;
+          max-height: 9999px;
+          margin-bottom: 50px;
+        }
+      }
+    }
+
+    .institutional-menu__href {
+      font-size: 16px;
+      line-height: 18px;
+      font-weight: 600;
+      color: #000000;
+      text-transform: uppercase;
+      border-bottom: 1px solid #D1D3D4;
+      margin-bottom: 25px;
+      display: block;
+      padding: 10px 0 5px 0;
+      transition: .2s linear;
+      position: relative;
+
+      &:hover, &.active {
+        background: #7F00A6;
+        color: #FFF;
+        border-bottom: 1px solid #FFF;
+
+        &:before {
+          background: #FFF;
+        }
+      }
+
+      &:before {
+        content: "";
+        height: 4px;
+        width: 100%;
+        background: #7F00A6;
+        position: absolute;
+        bottom: -2px;
+        max-width: 25px;
+      }
+    }
+  }
+
+  .institutional-title {
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .institutional-column {
+    font-size: 16px;
+    line-height: 26px;
+    color: #58595B;
+    font-weight: 500;
+    width: 100%;
+  }
+}

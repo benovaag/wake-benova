@@ -1,0 +1,34 @@
+.product-recommendations {
+    clear: both;
+    
+    @include device(desktop) {
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+    
+    @include device(mobile) {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+}
+
+.product-recommendations__title {
+    color: #000000;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+
+    @include device(desktop) {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: 2.6px;
+        margin-bottom: 25px;
+    }
+
+    @include device(mobile) {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 1.4px;
+        margin-bottom: 15px;
+    }
+}

@@ -1,0 +1,35 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @include device(desktop) {
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+
+    @include device(mobile) {
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    .breadcrumbs-href {
+        font-size: 14px;
+        color: #232323;
+        font-weight: 500;
+        opacity: 0.5;
+
+        &:after {
+            content: "|";
+            color: #232323;
+            opacity: 0.5;
+            margin: 0 5px;
+        }
+    }
+
+    .breadcrumbs-href__last {
+        font-size: 14px;
+        color: #232323;
+        font-weight: 600;
+    }
+}

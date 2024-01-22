@@ -1,0 +1,14 @@
+.showcase-list {
+
+    .spot {
+        margin: 0;
+
+        @include device(desktop) {
+            width: calc(33.33% - 11px);
+        }
+
+        @include device(mobile) {
+            width: 100%;
+        }
+    }
+}

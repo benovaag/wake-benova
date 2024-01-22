@@ -1,0 +1,21 @@
+<div class="product-cep">
+    <span class="product-cep__title">CEP</span>
+    <form class="product-cep__container" action="">
+        <input class="product-cep__input" placeholder="Digite seu cep" name="CEP" id="cep" type="text" />
+        <button class="product-cep__button" type="submit">Calcular</button>
+
+        <a target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="product-cep__know">Não sabe o CEP?</a>
+    </form>
+
+    <section class="dados-frete"></section>
+</div>
+
+{{ if shipping_quotes }}
+<div>
+    <ul>
+        <li>{{ shipping_quotes.name }}</li>
+        <li>{{ shipping_quotes.deadline }}</li>
+        <li>{{ shipping_quotes.value | math.format "c" "pt-BR" }}</li>
+    </ul>
+</div>
+{{ end }}

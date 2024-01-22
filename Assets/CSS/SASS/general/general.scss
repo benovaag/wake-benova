@@ -1,0 +1,65 @@
+div#___ratingbadge_1, div#___ratingbadge_0 {
+    z-index: 1!important;
+}
+
+.content {
+    width: 100%;
+    max-width: 1510px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+
+.margin {
+    @include device(desktop) {
+        margin-top: 70px!important;
+        margin-bottom: 70px!important;
+    }
+
+    @include device(mobile) {
+        margin-top: 40px!important;
+        margin-bottom: 40px!important;
+    }
+}
+
+.home-showcase__title {
+    color: #232323;
+    font-weight: bold;
+
+    @include device(desktop) {
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    @include device(mobile) {
+        font-size: 16px;
+        line-height: 18px;
+    }
+}
+
+.home-showcase__subtitle {
+    color: #707070;
+    font-weight: 400;
+    padding-top: 5px;
+
+    @include device(desktop) {
+        font-size: 16px!important;
+    }
+
+    @include device(mobile) {
+        font-size: 14px!important;
+    }
+}
+
+@include device(desktop) {
+    .banner-mobile {
+        display: none;
+    }
+}
+
+@include device(mobile) {
+    .banner-desktop {
+        display: none;
+    }
+}

@@ -1,0 +1,211 @@
+{{~ containInformation = false ~}}
+
+{{~ if informations
+if informations.size > 0
+containInformation = true
+end
+end~}}
+
+{{~ if containInformation ~}}
+<!-- NÃO MEXER NA ORGANIZAÇÃO ABAIXO, DO CONTRARIO O CSS EMPTY NÃO ERA FUNCIONAR PARA OCULTAR QUANDO A DIV TIVER VAZIA -->
+<div class="product-informations">
+  <ul class="informations-items content">
+    {{ for information in informations }}
+    {{~ if !(information.type == "Valor Referente") && information.value.size > 0 ~}}
+
+    <!-- ORDENA A LISTAGEM DE ACORDO COM A DO PAINEL
+        ESSA SOLUÇÃO PODE SOFRER MELHORIAS FUTURAMENTE -->
+
+    {{~ if (information.type == "Informações") ~}}
+
+    <li class="informations-items__item" style="order: -100">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Carrinho") ~}}
+
+    <li class="informations-items__item" style="order: -99">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Benefícios") ~}}
+
+    <li class="informations-items__item" style="order: -98">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Especificações") ~}}
+
+    <li class="informations-items__item" style="order: -97">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Dados Técnicos") ~}}
+
+    <li class="informations-items__item" style="order: -96">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Composição") ~}}
+
+    <li class="informations-items__item" style="order: -95">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Modo de Usar") ~}}
+
+    <li class="informations-items__item" style="order: -94">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Cuidados") ~}}
+
+    <li class="informations-items__item" style="order: -93">
+
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Itens Inclusos") ~}}
+
+    <li class="informations-items__item" style="order: -92">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Dicas") ~}}
+
+    <li class="informations-items__item" style="order: -91">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Vídeo") ~}}
+
+    <li class="informations-items__item" style="order: -90">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Descrição") ~}}
+
+    <li class="informations-items__item" style="order: -89">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{~ if(information.title.size <= 0) ~}} Descrição {{ else }} {{ information.title }} {{ end }} </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Valor Referente") ~}}
+
+    <li class="informations-items__item" style="order: -87">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Popup Referente") ~}}
+
+    <li class="informations-items__item" style="order: -86">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Prescrição") ~}}
+
+    <li class="informations-items__item" style="order: -85">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Tabela de Medidas") ~}}
+
+    <li class="informations-items__item" style="order: -84; display: none;">
+      <a href="#_{{ information.id }}" class="informations-items__title" style="display: none;">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Spot") ~}}
+
+    <li class="informations-items__item" style="order: -83">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ if (information.type == "Sinopse") ~}}
+
+    <li class="informations-items__item" style="order: -82">
+      <a href="#_{{ information.id }}" class="informations-items__title">
+        {{ information.title }}
+      </a>
+    </li>
+
+    {{~ end ~}}
+
+    {{~ end ~}} {{ end }}
+  </ul>
+  <div class="descriptions content">
+    {{ for information in informations }}
+    {{~ if !(information.type == "Valor Referente") && information.value.size > 0 ~}}
+    <div id="_{{ information.id }}" class="descriptions-text">
+      {{ information.value }}
+    </div>
+    {{~ end ~}}
+    {{ end }}
+  </div>
+</div>
+{{~ end ~}}

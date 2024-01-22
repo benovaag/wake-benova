@@ -1,0 +1,40 @@
+.sort {
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    color: #232323;
+    font-size: 14px;
+    font-weight: 400;
+    
+    @include device(desktop) {
+        width: 120px;
+    }
+
+    @include device(mobile) {
+        width: 100%;
+    }
+
+    option {
+        color:  #232323;
+    }
+}
+
+.category-sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 15px;
+
+    .category-sort__name {
+        font-size: 14px;
+        color: #232323;
+        font-weight: 600;
+        opacity: 0.5;
+
+        @include device(mobile) {
+            display: none;
+        }
+    }
+}

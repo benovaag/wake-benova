@@ -1,0 +1,31 @@
+{{~ if banners && position ~}}
+{{func has_position(x)
+ret x.position == position
+end}}
+{{~ banners = banners | array.filter @has_position ~}}
+{{~ end ~}}
+
+{{~ if banners ~}}
+{{~ banners = banners | array.sort "order" ~}}
+<div class="banner-categories__container">
+  <div class="banner-categories__carousel">
+    {{~ for banner in banners ~}}
+    {{~ alt = banner.alt_text ?? "banner" ~}}
+    {{~ title = banner.title ?? "banner" ~}}
+    {{~ href = banner.url_on_click ?? "banner" ~}}
+
+    <div class="banner-categories__content">
+      <a class="banner-categories__href" href="{{href}}" title="{{title}}">
+        {{~ image source: banner.banner_url alt: alt title: title class: "banner-categories__image" ~}}
+      </a>
+      <a class="banner-categories__subtitle" href="{{href}}" title="{{title}}">{{alt}}</a>
+    </div>
+
+    {{~ end ~}}
+  </div>
+
+  {{~ if banners.size > 1 }}
+  <div class="carousel-dots"></div>
+  {{~ end ~}}
+</div>
+{{~ end ~}}

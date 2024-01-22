@@ -1,0 +1,15 @@
+{{ sort_options = {} }}
+{{~ if page_type == "search" ~}}
+{{~ sort_options = settings.sort.search.options ~}}
+{{~ else if page_type == "hotsite" ~}}
+{{~ sort_options = settings.sort.hotsite.options ~}}
+{{~ end ~}}
+
+<div class="category-sort">
+  <select class="sort" name="sort_options" id="sort_options" onChange="sortResult(this.value);">
+    <option class="sort-title" value="" selected disabled hidden>{{ "Ordenar por" }}</option>
+    {{~ for option in sort_options ~}}
+    <option class="sort-name" value="{{option.setting.key}}:{{option.setting.direction}}">{{option.name}}</option>
+    {{~ end ~}}
+  </select>
+</div>

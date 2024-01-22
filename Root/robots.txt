@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://awake.fbits.store/sitemap.xml

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+  {{ meta_tags seo: data.hotsite.seo }}
+  {{ header_head }}
+  {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
+  {{ asset type: "css" paths: ["theme.min"]}}
+  {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+</head>
+
+<body>
+  {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+
+  {{ header }}
+
+  <div class="wishlist content">
+    {{~ breadcrumb breadcrumbs: data.hotsite.breadcrumbs ~}}
+
+    <div id="wishlist-body" class="wishlist-body">
+      <p class="wishlist-text">Carregando...</p>
+    </div>
+  </div>
+
+  {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+  {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+  {{ footer }}
+  {{ if products }}
+      {{ gtm_hotsite_view hotsite: data.hotsite products: products.items categories: common.categories }}
+  {{ end }}
+  {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+  {{ asset type: "js" paths: [
+  "wishlist/wishlist"
+  ] options:"async" }}
+</body>
+
+</html>

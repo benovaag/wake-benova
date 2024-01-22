@@ -1,0 +1,35 @@
+.category-description {
+    
+    > div {
+        border-top: 1px solid #E2E1DC;
+
+        @include device(desktop) {
+            margin-top: 75px;
+            margin-bottom: 75px;
+            padding-top: 75px;
+        }
+
+        @include device(mobile) {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding-top: 40px;
+        }
+    }
+
+    .category-title {
+        font-size: 24px;
+        line-height: 26px;
+        color: #000000;
+        font-weight: 600;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .category-text {
+        font-size: 14px;
+        line-height: 26px;
+        color: #000000;
+        font-weight: 400;
+        text-align: center;
+    }
+}

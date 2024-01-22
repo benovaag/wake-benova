@@ -1,0 +1,90 @@
+{{~ ##
+Description: Renders nav item with links
+Params:
+- menus: all the menus from a group
+- current_menu: the current menu being rendered
+Usage:
+nav_item menus: menus current_menu: menu
+## ~}}
+
+{{~ is_submenu = is_submenu ?? false ~}}
+{{~ children = menus | group.get current_menu.menu_id ~}}
+
+{{~ link = current_menu.link ~}}
+{{~ if !(link | string.starts_with "/") && !(link | string.starts_with "http") ~}}
+{{~ link = link | string.prepend "/" ~}}
+{{~ end ~}}
+
+{{~ if children.size == 0 && !is_submenu ~}}
+<li class="navigate-container__item">
+    <a href="{{link}}" class="navigate-item__link">
+        {{current_menu.name}}
+    </a>
+</li>
+{{~ else if !is_submenu && current_menu.name == "Departamentos" ~}}
+<li class="navigate-container__item hasChildren departaments">
+    <a href="{{link}}" class="navigate-item__link">
+        {{current_menu.name}}
+    </a>
+    <div class="navigate-child" id="open-submenu">
+        <ul class="navigate-child__itens content">
+            {{~ for child in children ~}}
+            {{ header_navItem menus: menus current_menu: child is_submenu: true }}
+            {{~ end ~}}
+        </ul>
+    </div>
+</li>
+{{~ else if !is_submenu ~}}
+<li class="navigate-container__item hasChildren">
+    <a href="{{link}}" class="navigate-item__link">
+        {{current_menu.name}}
+    </a>
+    <div class="navigate-child" id="open-submenu">
+        <a href="{{link}}" class="navigate-link__desktop">{{current_menu.name}}</a>
+        <ul class="navigate-child__itens content">
+            {{~ for child in children ~}}
+            {{ header_navItem menus: menus current_menu: child is_submenu: true }}
+            {{~ end ~}}
+        </ul>
+        <a href="{{current_menu.link}}" class="navigate-link__mobile">Ver toda a categoria</a>
+    </div>
+</li>
+{{~ else if is_submenu && children.size > 0 ~}}
+<li class="navigate-children hasChildren">
+    <a href="{{link}}" class="navigate-children__link">{{current_menu.name}}</a>
+    <div class="navigate-grandchild" id="open-grandsubmenu">
+        <a href="{{link}}" class="navigate-link__desktop">{{current_menu.name}}</a>
+        <ul class="navigate-grand__itens content">
+            {{~ for child in children ~}}
+            {{ header_navItem menus: menus current_menu: child is_submenu: true }}
+            {{~ end ~}}
+        </ul>
+        <a href="{{current_menu.link}}" class="navigate-link__mobile">Ver toda a categoria</a>
+    </div>
+</li>
+{{~ else if is_submenu && children.size == 0 ~}}
+{{~ if current_menu.name == "imagem" ~}}
+<li class="navigate-container__image">
+    <a class="navigate-children__inner" href="{{link}}">
+        <img class="navigate-children__image" src="{{current_menu.full_image_url}}" loading="lazy">
+    </a>
+</li>
+{{~ else ~}}
+<li class="navigate-children">
+    <a href="{{link}}" class="navigate-children__inner">{{current_menu.name}}</a>
+</li>
+{{~ end ~}}
+{{~ else ~}}
+<li class="navigate-children">
+    <a href="{{link}}" class="navigate-children__link">{{current_menu.name}}</a>
+    <ul>
+        <a href="{{link}}" class="navigate-link__desktop">{{current_menu.name}}</a>
+
+        {{~ for child in children ~}}
+        {{ header_navItem menus: menus current_menu: child is_submenu: true }}
+        {{~ end ~}}
+
+        <a href="{{current_menu.link}}" class="navigate-link__mobile">Ver toda a categoria</a>
+    </ul>
+</li>
+{{~ end ~}}

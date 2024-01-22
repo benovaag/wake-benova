@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
+
+<head>
+  <title>Pedido Confirmado - {{ configuracao.nome_ecommerce }}</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  {{styles_mail}}
+</head>
+
+<body>
+  <table cellpadding="0" cellspacing="0" width="600">
+    <thead>
+      <tr>
+        <th>
+          {{header_mail}}
+        </th>
+      </tr>
+      <tr class="header">
+        <th class="header-text">
+          <p class="header-text">
+            Nº do Pedido {{pedido.id}}
+          </p>
+        </th>
+        <th class="header-href">
+          <a class="header-href" href="{{ configuracao.url_carrinho }}MinhaConta/Pedido/">MEUS PEDIDOS</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="tbody">
+      <tr>
+        <td>
+          <p class="tbody-title" style="text-transform: none;">Oi, {{ pedido.usuario.nome }}!</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Informamos que seu pedido já está pronto para retirada!<br>Estamos ansiosos pela sua vinda em nossa loja.</p>
+          <br>
+          <p class="aviso">SEU PEDIDO JÁ ESTÁ PRONTO PARA RETIRAR NA LOJA!</p>
+          <br>
+          <br>
+          <p>Não se esqueça de levar um documento com foto!<br>Atente-se para os dias e horários de funcionamento da loja.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="tbody-title">O produto será retirado por:</p>
+          <p>{{ loja.retirada.nome }}</p>
+          <p>{{ loja.retirada.documento }}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="tbody-title">Local de retirada</p>
+          <p>{{ loja.nome }}, {{ loja.endereco }}, {{ loja.numero }}, {{ loja.cep }}.</p>
+          <p>Telefone: {{ loja.telefone }}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="tbody-title">Produtos Comprados</p>
+        </td>
+        {{for p in pedido.produtos}}
+      <tr class="tbody-product__image">
+        <td>
+          <img src="{{p.imagem}}" alt="{{p.nome}}" height="120" width="120" style="margin-right: 15px;" />
+        </td>
+        <td>
+          <p>
+            {{p.nome}}
+          </p>
+          <p>
+            {{p.atribtuos}}
+          </p>
+          <p>
+            <b>Valor Unitário:</b> {{p.preco_unitario}}
+          </p>
+          <p>
+            <b>Valor Total:</b> {{p.preco_total}}
+          </p>
+        </td>
+      </tr>
+      {{end}}
+      </tr>
+      <tr>
+        <td>
+          <p class="tbody-title">Resumo da compra</p>
+          <p>Valor dos produtos: <span style="float: right;">{{pedido.valor_sub_total}}</span></p>
+          <p>Frete: <span style="float: right;">{{ pedido.frete.valor_frete }}</span></p>
+          <p>Desconto: <span style="float: right;">{{ pedido.valor_desconto }}</span></p>
+          <p>Valor total: <span style="float: right;">{{ pedido.valor_total }}</span></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="tbody-title">Forma de pagamento</p>
+          <p>Forma de pagamento: {{ pedido.formapagamento.nome }}</p>
+          <p>Parcelamento: {{ pedido.formapagamento.tipo }}</p>
+          <p>Número de parcelas: {{ pedido.formapagamento.numero_parcelas }}</p>
+          <p>Valor da parcela {{ pedido.formapagamento.valor_parcelas }}</p>
+          <br>
+
+          {{ if pedido.formapagamento.boleto }}
+          <a href="{{ pedido.formapagamento.boleto.url }}">Imprimir boleto</a>
+          {{end}}
+
+          {{ if pedido.formapagamento.pix }}
+          <a href="{{ pedido.formapagamento.pix.qrcode_link_pagamento }}">Link de pagamento</a>
+          <img src="{{ pedido.formapagamento.pix.qrcode_imagem_url }}">
+          <p>{{ pedido.formapagamento.pix.codigo_qrcode }}</p>
+          <p>{{ pedido.formapagamento.pix.dt_expiracao_qr_code }}</p>
+          {{end}}
+        </td>
+      </tr>
+    </tbody>
+    {{footer_mail}}
+  </table>
+</body>
+
+</html>

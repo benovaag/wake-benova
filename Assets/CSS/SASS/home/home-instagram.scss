@@ -1,0 +1,23 @@
+.instagram {
+  text-align: center;
+
+  .instagram-images {
+    padding-top: 30px;
+
+    .glider-track {
+      gap: 12px;
+    }
+  }
+
+  .home-showcase__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

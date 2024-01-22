@@ -1,0 +1,13 @@
+{{~ if products ~}}
+{{ carousel_id = math.uuid }}
+<div class="showcase-container">
+  <div class="showcase-carousel">
+    {{~ for prod in products ~}}
+    {{ spot product: prod }}
+    {{~ end ~}}
+  </div>
+
+  <button aria-label="Anterior" class="carousel-arrow carousel-prev"></button>
+  <button aria-label="Próximo" class="carousel-arrow carousel-next"></button>
+</div>
+{{~ end ~}}

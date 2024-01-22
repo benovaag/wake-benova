@@ -1,0 +1,71 @@
+.autocomplete-items {
+    position: absolute;
+    background: #FFF;
+    z-index: 9;
+    width: 100%;
+    overflow-y: auto;
+
+    @include device(desktop) {
+        max-height: calc(100vh - 150px);
+    }
+
+    @include device(mobile) {
+        max-height: calc(100vh - 190px);
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        background: #ccc;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #7F00A6;
+    }
+
+    .autocomplete-suggestion {
+        font-size: 14px;
+        line-height: 16px;
+        color: #000;
+        text-transform: initial;
+        font-weight: 400;
+        padding: 5px 15px;
+        border-bottom: 1px solid #C8C8C8;
+        transition: .2s linear;
+        cursor: pointer;
+
+        &:hover {
+            background: #f4f4f4;
+        }
+    }
+
+    .autocomplete-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 8px 15px;
+        border-bottom: 1px solid #C8C8C8;
+
+        .autocomplete-item__column {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .autocomplete-item__image {
+            max-width: 60px;
+        }
+
+        .autocomplete-item__name {
+            color: #000000;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .autocomplete-item__price {
+            color: #000000;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
+}

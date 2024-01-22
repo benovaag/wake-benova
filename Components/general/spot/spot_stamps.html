@@ -1,0 +1,12 @@
+{{~ containSpotPromotion = false ~}}
+
+{{~ for promotion in promotions ~}}
+    {{~ if promotion.title == "Spot" ~}}
+        {{~ containSpotPromotion = true ~}}
+        <div class="promotions">
+            <p class="promotions-title">
+                {{ promotion.title }}
+            </p>
+        </div>
+    {{~ end ~}}
+{{~ end ~}}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+  {{ meta_tags seo: data.product.seo }}
+  {{ header_head }}
+  {{ product_structured_data product: data.product product_options: data.product_options current_url: store.urls.current }}
+  {{ asset type: "css" paths: ["theme.min"]}}
+  {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+
+  {{ header }}
+
+  {{~ product = data.product ~}}
+  <input type="hidden" id="product-id" name="product-id" value="{{ data.product.product_id }}">
+  <input type="hidden" id="product-variant-id" name="product-variant-id" value="{{ data.product.product_variant_id }}">
+
+  <div class="product">
+    <div class="content">
+      {{~ breadcrumb breadcrumbs: product.breadcrumbs ~}}
+
+      {{ product_view product: product informations: product.informations reviews: product.reviews }}
+    </div>
+
+    {{ product_information informations: product.informations }}
+
+    <div class="content">
+      {{ buy_together product: product }}
+
+      {{ if data.product_recommendations.size > 0 }}
+      <div class="product-recommendations">
+        {{ general_contentTitle contents: data.hotsite.contents title: "Produto - Título Vitrine" }}
+        <span id="product-reviews"></span>
+        {{ showcase_carousel products: data.product_recommendations }}
+      </div>
+      {{ end }}
+
+      {{ product_reviews reviews: product.reviews product_name: product.product_name }}
+    </div>
+  </div>
+
+  {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+  {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+  {{ footer }}
+  {{ if data }}
+      {{ gtm_product_view product: data.product  }}
+  {{ end }}
+  {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+  {{ asset type: "js" paths: [
+  "product/product-frete",
+  "showcase/showcase-carousel",
+  "product/product_buyTogether",
+  "slick.min.js",
+  "wishlist/wishlist",
+  "product/product-product", "product/product-avise", "product/product-information",
+  "product/product-quantity", "product/product-review", "product/product-reviewsDate", "product/product-thumbnailsSlick"
+  ]}}
+</body>
+
+</html>

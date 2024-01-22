@@ -1,0 +1,39 @@
+query Common($url: String!, $scriptPageTypes: [ScriptPageType!]) {
+  menuGroups(url:$url) {
+    menuGroupId
+    position
+    menus {
+      menuId
+      parentMenuId
+      name
+      cssClass
+      link
+      fullImageUrl
+      order
+    }
+  }
+  categories(first: 50) {
+    nodes {
+      name
+      categoryId
+      hotsiteUrl
+      children {
+        name
+        categoryId
+        hotsiteUrl
+      }
+    }
+  }
+  scripts(url:$url, pageType:$scriptPageTypes) {
+  	name
+    pageType
+    position
+    priority
+    content
+  }
+  gtm_id: shopSettings(settingNames: "GoogleTagManagerId") {
+    name
+    value
+  }
+}
+

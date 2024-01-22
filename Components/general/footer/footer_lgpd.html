@@ -1,0 +1,124 @@
+<div id="footer-lgpd" style="display: none;" class="footer-lgpd-opened">
+    <div id="footer-lgpd-content">
+        <p class="footer-lgpd__text"><strong>Cookies:</strong> Guardamos estatísticas de visitas para melhorar sua experiência de navegação.
+            Ao continuar navegando, você concorda com a nossa <a href="/politica-de-privacidade" id="lgpd-accept-link" target="_blank">Política de Privacidade</a>.</p>
+        <button id="lgpd-accept">continuar e fechar</button>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        // Chama a função que verifica o cookie de políticas de privacidade
+        validaCookie();
+
+        // Atribui um evento de clique ao botão "Continuar e fechar"
+        document.getElementById('lgpd-accept').addEventListener('click', function () {
+            // Criar um cookie de aceite da política que expira em 365 dias
+            setCookie('aceitouPoliticas', 'aceitou', 365);
+            // Oculta o alerta de cookies
+            document.getElementById('footer-lgpd').classList.add('footer-lgpd-closed');
+            // Remove classe extra do body
+            document.body.classList.remove('alerta-de-cookie-aparecendo');
+        });
+
+        // Função responsável por ocultar e exibir o modal de alerta de cookies
+        function validaCookie() {
+            // Verifica se existe o cookie com chave="aceitouPoliticas" e valor="aceitou"
+            if (document.cookie.indexOf('aceitouPoliticas') < 0) {
+                // Caso não exista, exibe modal de alerta de cookies
+                document.getElementById('footer-lgpd').classList.remove('footer-lgpd-closed');
+                document.getElementById('footer-lgpd').classList.add('footer-lgpd-open');
+                // Adiciona classe extra ao body
+                document.body.classList.add('alerta-de-cookie-aparecendo');
+            } else {
+                // Caso contrário, oculta o modal de alerta de cookies 
+                document.getElementById('footer-lgpd').classList.add('footer-lgpd-closed');
+                // Remove classe extra do body
+                document.body.classList.remove('alerta-de-cookie-aparecendo');
+            }
+        }
+
+        // Função responsável por criar o cookie com parâmetros já definidos
+        function setCookie(cname, cvalue, expires) {
+            var validade = new Date();
+            validade.setTime(validade.getTime() + expires * 24 * 60 * 60 * 1000);
+            var validadeUTC = 'expires=' + validade.toUTCString();
+            document.cookie = cname + '=' + cvalue + ';' + validadeUTC + ';path=/';
+        }
+    });
+
+</script>
+
+<style>
+    .footer-lgpd-open {
+        display: block !important;
+    }
+
+    .footer-lgpd-closed {
+        display: none !important;
+    }
+
+    #footer-lgpd {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: fit-content;
+        z-index: 9999999999;
+        transition: .3s ease-in-out;
+        background-color: #7F00A6;
+        padding: 15px;
+    }
+
+    #footer-lgpd #footer-lgpd-content {
+        max-width: 1510px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    @media(min-width: 1026px) {
+        #footer-lgpd #footer-lgpd-content {
+            gap: 30px;
+        }
+    }
+
+    @media(max-width: 1025px) {
+        #footer-lgpd #footer-lgpd-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+    }
+
+    #footer-lgpd .footer-lgpd__text {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    #footer-lgpd #lgpd-accept-link {
+        white-space: nowrap;
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    #footer-lgpd #lgpd-accept {
+        color: #fff !important;
+        background-color: #D58CFF !important;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: none;
+        transition: .2s linear;
+        border-radius: 5px;
+    }
+
+    #footer-lgpd #lgpd-accept:hover {
+        background: #0B954C;
+    }
+</style>

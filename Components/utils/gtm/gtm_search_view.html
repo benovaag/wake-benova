@@ -1,0 +1,57 @@
+{{ ##
+    Description: Data layer search component, saves the info of products
+                to use when pushing the data to the datalayer
+    Params:
+        - product: the product data to save in tag manager
+    Usage:
+        data_layer_search product: data.product
+## }}
+<script>
+    const search_list = {
+        item_list_name: "Search",
+        items: [
+            {{~ for product in products ~}}
+                {
+                    item_id: {{product.product_id}},
+                    item_name: "{{product.product_name | string.escape}}",
+                    {{~ if product.prices ~}}
+                        discount: {{product.prices.list_price - product.prices.price}},
+                        price: {{product.prices.list_price}},
+                    {{ end }}
+                    index: 0,
+                    {{ if product.product_brand}}
+                        item_brand: "{{product.product_brand.name}}",
+                    {{ end }}
+                    {{ i = 1 }}
+                    {{ for category in product.product_categories }}
+                        item_category{{if i > 1}}{{ i }}{{end}}:"{{category.name}}",
+                        {{i = i + 1}}
+                    {{ end }}
+                    quantity: 1
+                }{{if !for.last}},{{end}}
+            {{~ end ~}}
+        ]
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        event: "view_item_list",
+        ecommerce: {
+            ...search_list
+        }
+    })
+
+    var queryString = new URLSearchParams(window.location.search);
+    const search_term = queryString.get("busca")
+    dataLayer.push({
+        event: "search",
+        search_term: search_term
+    })
+
+    dataLayer.push({
+        event: "internalSiteSearchView",
+        siteSearchForm: window.location.href,
+        siteSearchResults: {{total_count}},
+        siteSearchTerm: search_term
+    })
+</script>

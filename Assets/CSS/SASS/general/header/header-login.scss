@@ -1,0 +1,232 @@
+.modal-login {
+    position: fixed;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 95%;
+    max-width: 380px;
+    height: 100%;
+    transition: all .6s ease-in-out;
+    background-color: #fff;
+    z-index: 10;
+    overflow-y: auto;
+
+    @include device(desktop) {
+        right: -95%;
+        padding: 25px;
+
+        &.modal-login__open {
+            opacity: 1;
+            visibility: visible;
+            right: 0;
+            transition: all .6s ease-in-out;
+        }
+    }
+
+    @include device(mobile) {
+        left: -95%;
+        padding: 15px;
+
+        &.modal-login__open {
+            opacity: 1;
+            visibility: visible;
+            left: 0;
+            transition: all .6s ease-in-out;
+        }
+    }
+}
+
+.modal-login::-webkit-scrollbar-thumb {
+    background: #B08FAB;
+}
+
+.modal-login::-webkit-scrollbar {
+    width: 4px;
+    background: #ccc;
+}
+
+.modal-login__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    &:before {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath id='topo_login' d='M28,14A14,14,0,1,0,4.544,24.313l-.013.012.454.383c.03.025.062.045.091.07.241.2.491.39.746.574.082.06.165.119.249.177q.408.281.836.534l.187.108c.312.178.631.345.957.5l.072.033a13.874,13.874,0,0,0,3.386,1.072l.094.017c.369.064.741.115,1.118.149l.138.011c.376.031.755.051,1.14.051s.758-.02,1.131-.05l.142-.011q.561-.051,1.109-.146l.1-.017a13.873,13.873,0,0,0,3.338-1.046l.117-.053q.471-.221.922-.477l.223-.129c.274-.161.543-.33.8-.509.094-.064.186-.132.279-.2.223-.161.443-.327.656-.5.047-.038.1-.071.145-.11l.466-.389-.014-.012A13.964,13.964,0,0,0,28,14ZM1.018,14a12.982,12.982,0,1,1,21.591,9.7,3.815,3.815,0,0,0-.455-.273l-4.31-2.155a1.128,1.128,0,0,1-.627-1.015V18.757c.1-.123.205-.263.314-.416a10.374,10.374,0,0,0,1.332-2.608,1.848,1.848,0,0,0,1.061-1.674v-1.8a1.852,1.852,0,0,0-.452-1.206V8.671a4.106,4.106,0,0,0-.959-2.985A5.73,5.73,0,0,0,14,4.073,5.732,5.732,0,0,0,9.486,5.686a4.106,4.106,0,0,0-.959,2.985v2.376a1.855,1.855,0,0,0-.452,1.206v1.8a1.852,1.852,0,0,0,.682,1.436,9.566,9.566,0,0,0,1.575,3.253V20.22a1.136,1.136,0,0,1-.592,1l-4.025,2.2a3.679,3.679,0,0,0-.383.242A12.951,12.951,0,0,1,1.018,14Zm20.6,10.5q-.267.194-.543.374c-.085.055-.169.11-.255.163-.24.149-.485.29-.734.423l-.166.085a12.972,12.972,0,0,1-1.776.751l-.065.022q-.479.159-.969.281h0c-.33.081-.664.149-1,.2l-.027.005c-.316.051-.635.089-.955.117l-.17.013c-.316.024-.634.039-.953.039s-.645-.016-.965-.04l-.166-.013c-.323-.029-.644-.067-.962-.119l-.043-.008a12.933,12.933,0,0,1-1.98-.494l-.06-.02q-.48-.163-.948-.363l-.007,0c-.294-.127-.583-.267-.868-.415L7.89,25.45c-.26-.139-.515-.289-.766-.446L6.9,24.862c-.231-.151-.459-.309-.681-.475l-.068-.053.049-.027,4.025-2.2a2.153,2.153,0,0,0,1.123-1.891V18.386l-.117-.142A8.5,8.5,0,0,1,9.705,15.08l-.046-.2-.174-.113a.844.844,0,0,1-.391-.709v-1.8a.831.831,0,0,1,.284-.623l.168-.152V8.642l0-.067a3.066,3.066,0,0,1,.711-2.22A4.8,4.8,0,0,1,14,5.091a4.809,4.809,0,0,1,3.74,1.255,3.117,3.117,0,0,1,.719,2.23l0,2.9.168.152a.832.832,0,0,1,.284.623v1.8a.85.85,0,0,1-.6.8l-.253.078-.081.252A9.418,9.418,0,0,1,16.7,17.752c-.133.188-.263.355-.375.483l-.126.144v1.883a2.14,2.14,0,0,0,1.19,1.925l4.31,2.155.081.042C21.727,24.426,21.671,24.464,21.616,24.5Z'/%3E%3C/svg%3E%0A");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 28px;
+        height: 28px;
+        display: block;
+        transition: .2s linear;
+    }
+
+    .modal-login__title {
+        font-weight: 600;
+        color: #000;
+        text-align: center;
+
+        @include device(desktop) {
+            font-size: 16px;
+            line-height: 16px;
+        }
+
+        @include device(mobile) {
+            font-size: 15px;
+            line-height: 15px;
+        }
+    }
+
+    .modal-login__close {
+        cursor: pointer;
+
+        &:after {
+            content: '';
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14.685' height='14.521' viewBox='0 0 14.685 14.521'%3E%3Cpath id='BTN_Fechar' data-name='BTN Fechar' d='M6.292,7.4,2.457.936H2.111L-3.335-7.12H1.519l3.712,6.1h.347L11.085,7.4ZM-3.6,7.4,1.621-.369l3.3,1.387L1.07,7.4ZM5.639.651,2.335-.736,6.149-7.12h4.67Z' transform='translate(3.6 7.12)'/%3E%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            background-size: 14px;
+            width: 14px;
+            height: 14px;
+            display: block;
+        }
+    }
+}
+
+.modal-login__content {
+    height: calc(100% - 73px);
+    display: grid;
+
+    .form-login {
+        width: 100%;
+        border: 1px solid #C1C1C1;
+        font-weight: 400;
+        height: 35px;
+        text-indent: 15px;
+        margin-bottom: 15px;
+        font-size: 12px;
+        color: #818181;
+        transition: .2s linear;
+        border-radius: 5px;
+    }
+
+    .form-login:focus {
+        border: 1px solid #000;
+    }
+
+    .form-login__submmit {
+        width: 100%;
+        background-color: #207817;
+        padding: 10px;
+        border: none;
+        transition: ease-in-out .3s;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #12430D;
+        }
+    }
+
+    .modal-login__sign {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding-top: 20px;
+
+        .login-sign__text {
+            color: #1D1D1B;
+            font-weight: 600;
+
+            @include device(desktop) {
+                font-size: 16px;
+                line-height: 16px;
+            }
+
+            @include device(mobile) {
+                font-size: 15px;
+                line-height: 15px;
+            }
+        }
+
+        .login-sign__link {
+            width: 100%;
+            background-color: #FFF;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 10px;
+            transition: ease-in-out .3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #000;
+            font-size: 14px;
+            margin-top: 15px;
+
+            &:hover {
+                background-color: #000;
+                color: #FFF;
+            }
+        }
+    }
+
+    .form-login__forgot {
+        display: block;
+        text-align: right;
+        color: #8B8B8B;
+        text-decoration: underline;
+        font-weight: 400;
+        font-size: 12px;
+        margin-top: 15px;
+        text-transform: uppercase;
+        transition: .2s linear;
+
+        &:hover {
+            color:#12430D;
+        }
+    }
+}
+
+.modal-login__button {
+    display: block;
+    font-size: 15px;
+    line-height: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+    transition: .2s linear;
+    cursor: pointer;
+
+    &.cart-button__checkout {
+        background: #000000;
+        color: #FFF;
+
+        @include device(desktop) {
+            &:hover {
+                background: #F6720E;
+            }
+        }
+    }
+
+    &.cart-button__stay {
+        border: 2px solid #000000;
+        margin-bottom: 5px;
+
+        @include device(desktop) {
+            &:hover {
+                background: #000;
+                color: #FFF;
+            }
+        }
+    }
+}

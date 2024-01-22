@@ -1,0 +1,275 @@
+.spot {
+    background: #fff;
+    height: auto;
+    position: relative;
+    border-radius: 5px;
+
+    @include device(desktop) {
+        transition: .2s linear;
+        margin: 25px 12px;
+
+        &:hover {
+            box-shadow: 0px 0px 15px #0000002E;
+
+            .spot-images__hover {
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    @include device(mobile) {
+        padding: 5px;
+        margin: 15px 5px 0 5px;
+    }
+
+    .spot-condition {
+        background: #F2C200;
+        border-radius: 5px;
+        width: fit-content;
+        padding: 10px 15px;
+        font-size: 10px;
+        line-height: normal;
+        color: #000;
+        font-weight: 600;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 9;
+
+        &.novo {
+            background: #7F00A6;
+            color: #fff;
+        }
+    }
+
+    .spot-images {
+        position: relative;
+        margin: 0 auto 15px auto;
+
+        .spot-images__hover {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: .3s ease;
+        }
+    }
+
+    .stamps {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 9;
+
+        @include device(desktop) {
+            align-items: flex-start;
+        }
+
+        @include device(mobile) {
+            align-items: end;
+        }
+
+        .spot-price__discount {
+            background: #7F00A6;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: 400;
+            text-align: center;
+            padding: 10px 16px;
+
+            @include device(desktop) {
+                font-size: 12px;
+            }
+
+            @include device(mobile) {
+                font-size: 10px;
+            }
+        }
+    }
+
+    .promotions-title {
+        background: #7F00A6;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: 400;
+        text-align: center;
+        padding: 10px 16px;
+
+        @include device(desktop) {
+            font-size: 12px;
+        }
+
+        @include device(mobile) {
+            font-size: 10px;
+        }
+    }
+
+    .promotions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .spot-button {
+        display: flex;
+        gap: 12px;
+
+        .spot-button__buy {
+            background: #0FAE5A;
+            box-shadow: 0px 0px 31px #0000000F;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #FFFFFF;
+            font-weight: 400;
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
+            padding: 22px;
+            transition: .2s linear;
+
+            &:before {
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16.327' height='16.595' viewBox='0 0 16.327 16.595'%3E%3Cpath id='shopping-cart-2-line' d='M3.295,5.4.762,2.865l1.1-1.1L4.4,4.293H16.307A.781.781,0,0,1,17.055,5.3l-1.875,6.25a.781.781,0,0,1-.748.557H4.857v1.562h8.594V15.23H4.076a.781.781,0,0,1-.781-.781Zm1.562.458v4.687h8.993l1.406-4.687Zm-.391,12.5a1.172,1.172,0,1,1,1.172-1.172A1.172,1.172,0,0,1,4.467,18.355Zm9.375,0a1.172,1.172,0,1,1,1.172-1.172A1.172,1.172,0,0,1,13.842,18.355Z' transform='translate(-0.762 -1.76)' fill='%23fff'/%3E%3C/svg%3E%0A");
+                background-size: 100%;
+                width: 16px;
+                height: 16px;
+            }
+
+            &:hover {
+                background: #0B954C;
+            }
+        }
+    }
+
+    .spot-wishlist {
+        svg {
+            @include device(mobile) {
+                width: 14px;
+            }
+
+            path {
+                transition: .2s linear;
+            }
+
+            &:hover {
+                path {
+                    fill: #0fae5a;
+                }
+            }
+        }
+
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: .2s linear;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 0px 31px #0000000F;
+        border-radius: 5px;
+        width: 62px;
+        min-width: 62px;
+
+        .wishlist-on path {
+            fill: #0fae5a;
+        }
+    }
+}
+
+.spot-content {
+    padding: 0 20px 25px;
+
+    .spot-title {
+        color:#000000;
+        overflow: hidden;
+        text-align: center;
+        text-align: left;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        height: 40px;
+        margin-bottom: 5px;
+    }
+
+    .spot-favorite {
+        font-size: 12px;
+        color: #000000;
+        opacity: 0.5;
+        font-weight: 500;
+    }
+
+    .product-payment__type {
+        font-size: 12px;
+        line-height: normal;
+        color: #000000;
+        opacity: 0.5;
+        max-width: 232px!important;
+        font-weight: 500;
+    }
+
+    .spot-price {
+        margin: 25px 0;
+
+        .spot-prices {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            @include device(desktop) {
+                justify-content: center;
+            }
+    
+            @include device(mobile) {
+                justify-content: space-between;
+            }
+        }
+
+        .spot-price__before {
+            color: #949494;
+            display: block;
+            font-weight: 400;
+            font-size: 12px;
+
+            .spot-price__line {
+                text-decoration: line-through;
+            }
+        }
+
+        .spot-price__after {
+            color: #000000;
+            font-weight: 800;
+            display: block;
+            font-size: 20px;
+
+            &.single-price {
+                display: -webkit-inline-box;
+            }
+
+            .spot-price__por {
+                color: #505050;
+            }
+        }
+
+        .spot-payment__type {
+            font-size: 12px;
+            color: #707070;
+            margin-top: 2px;
+            max-width: 120px;
+
+            .spot-payment__color {
+                font-weight: bold;
+            }
+        }
+    }
+}

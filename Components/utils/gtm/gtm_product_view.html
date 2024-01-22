@@ -1,0 +1,98 @@
+{{ ##
+    Description: The product data layer view event component, saves the info of the
+                product to pushing the view event to the datalayer
+    Params:
+        - product: the product data to save in the data layer
+    Usage:
+        data_layer_product_view product: data.product
+## }}
+<script>
+    const product_items = [
+        {
+            item_id: {{ product.product_id }},
+            item_name: "{{ product.product_name | string.escape }}",
+            {{~ if product.prices ~}}
+                discount: {{ product.prices.list_price - product.prices.price }},
+                price: {{ product.prices.list_price }},
+            {{~ end ~}}
+            index: 0,
+            {{~ if product.product_brand ~}}
+                item_brand: "{{product.product_brand.name}}",
+            {{~ end ~}}
+            {{~ i = 1 ~}}
+            {{~ for category in product.product_categories ~}}
+                item_category{{if i > 1}}{{ i }}{{end}}:"{{category.name}}",
+                {{~ i = i + 1 ~}}
+            {{~ end ~}}
+            {{~ if product.attribute_selections.selected_variant ~}}
+                item_variant: "{{product.product_variant_id}}",
+            {{~ end ~}}
+            quantity: 1
+        }
+    ];
+
+    const product_details = [
+        {
+            id: {{ product.product_id }},
+            name: "{{ product.product_name | string.escape }}",
+            {{~ if product.prices ~}}
+                discount: {{ product.prices.list_price - product.prices.price }},
+                price: {{ product.prices.list_price }},
+            {{~ end ~}}
+            index: 0,
+            {{~ if product.product_brand ~}}
+                brand: "{{product.product_brand.name}}",
+            {{~ end ~}}
+            {{~ i = 1 ~}}
+            {{~ for category in product.product_categories ~}}
+                category{{if i > 1}}{{ i }}{{end}}:"{{category.name}}",
+                {{~ i = i + 1 ~}}
+            {{~ end ~}}
+            {{~ if product.attribute_selections.selected_variant ~}}
+                variant: "{{product.product_variant_id}}",
+            {{~ end ~}}
+            quantity: 1
+        }
+    ];
+
+    const select_item = {
+        item_list_id: "",
+        item_list_name: "Search Result",
+        items: product_items
+    };
+
+    window.dataLayer = window.dataLayer || [];
+
+    dataLayer.push({
+        event: "select_item",
+        ecommerce: {
+            ...select_item
+        }
+    })
+
+    const view_item = {
+        currency: "BRL",
+        value: {{ product.prices.price }},
+        items: product_items
+    };
+
+    dataLayer.push({
+        event: "view_item",
+        ecommerce: {
+            ...view_item
+        }
+    })
+
+    dataLayer.push({
+        event: "productView"
+    })
+
+    dataLayer.push({
+        event: "productDetail",
+        ecommerce: {
+            detail: {
+                products: product_details
+            }
+        }
+    })
+</script>

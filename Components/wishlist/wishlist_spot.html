@@ -1,0 +1,35 @@
+<div class="wishlist-spot">
+    <div class="wishlist-spot__description">
+        {{ if product.images.size > 0 }}
+        <a class="spot-images__href" href="/{{product.alias}}">
+            <img class="spot-images__image" alt="Imagem de Produto" src="{{ product.images[0].url }}" loading="lazy" loading="lazy" />
+        </a>
+        {{ else }}
+        <a class="spot-images__href" href="/{{product.alias}}">
+            <img class="spot-images__primary" src="https://benova.fbitsstatic.net/img/p/produto-nao-possui-foto-no-momento/sem-foto.jpg?w=330&h=330&v=20220125251131&qs=ignore" alt="Sem foto" title="Sem foto" loading="lazy" />
+        </a>
+        {{ end }}
+
+        <a href="/{{product.alias}}" class="wishlist-spot__title" title="{{ product.product_name }}">
+            {{ product.product_name }}
+        </a>
+    </div>
+
+    <div class="wishlist-spot__remove">
+        {{ wishlist_buttonRemove product_id: product.product_id }}
+    </div>
+
+    {{ if product.prices }}
+    <div class="spot-price">
+        {{ spot_price prices: product.prices displayed_installment: "" }}
+    </div>
+    {{ end }}
+
+    <div class="spot-button">
+        {{ if product.available }}
+        <a href="/{{product.alias}}" class="spot-button__buy">Comprar</a>
+        {{ else }}
+        <p class="spot-unavailable">Produto Indisponível</p>
+        {{ end }}
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{{ ##
+Description: Renders the 'buy' and 'add to cart' buttons and calls attribute components.
+Params:
+- product: product data
+Usage:
+product_attribute product: product
+## }}
+
+{{~ attribute_selections = product.attribute_selections ~}}
+
+{{~ if attribute_selections.can_be_matrix ~}}
+{{ product_attributeMatrix attribute_selections: attribute_selections }}
+{{~ else ~}}
+{{~
+product_attributeCombo attribute_selections: attribute_selections product_id: product.product_id
+product_attributeDiv attribute_selections: attribute_selections product_id: product.product_id
+product_attributeImage attribute_selections: attribute_selections product_id: product.product_id
+product_attributeColor attribute_selections: attribute_selections product_id: product.product_id
+~}}
+
+{{~ available = product.available ~}}
+{{~ variantId = "" ~}}
+{{~ stock = 0 ~}}
+
+{{~ if attribute_selections.selected_variant ~}}
+{{~ variantId = attribute_selections.selected_variant.product_variant_id ~}}
+{{~ available = attribute_selections.selected_variant.available ~}}
+{{~ stock = attribute_selections.selected_variant.stock ~}}
+{{~ else if attribute_selections.selections.size == 0 ~}}
+{{~ variantId = product.product_variant_id ~}}
+{{~ available = product.available ~}}
+{{~ stock = product.stock ~}}
+{{~ end ~}}
+{{~ end ~}}
+
+<div class="product-buttons">
+    <button type="button" class="product-buy" value="{{ variantId }}" onclick="addToCartClick(this.value)">Comprar</button>
+    {{~ product_wishlist product_id: product.product_id ~}}
+</div>

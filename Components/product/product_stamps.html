@@ -1,0 +1,13 @@
+{{~ containSpotPromotion = false ~}}
+
+{{~ for promotion in promotions ~}}
+    {{~ if promotion.title == "Página de Produto" ~}}
+        {{~ containSpotPromotion = true ~}}
+        <div class="promotions">
+            <p class="promotions-title">
+                {{ promotion.title }}
+            </p>
+            <!-- Adicione outros detalhes da promoção aqui, se necessário -->
+        </div>
+    {{~ end ~}}
+{{~ end ~}}

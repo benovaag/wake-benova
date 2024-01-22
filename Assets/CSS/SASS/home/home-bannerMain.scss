@@ -1,0 +1,49 @@
+.banner-main {
+  .banner-main__container {
+      position: relative;
+
+      .carousel-arrow {
+        position: absolute;
+        border: none;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0;
+        transition: .2s linear;
+        z-index: 9;
+        cursor: pointer;
+        background: transparent;
+
+        &.carousel-prev {
+            left: 5px;
+
+            &:before {
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='53' height='53' viewBox='0 0 53 53'%3E%3Cdefs%3E%3Cfilter id='Elipse_8' x='0' y='0' width='53' height='53' filterUnits='userSpaceOnUse'%3E%3CfeOffset dy='3' input='SourceAlpha'/%3E%3CfeGaussianBlur stdDeviation='3' result='blur'/%3E%3CfeFlood flood-opacity='0.161'/%3E%3CfeComposite operator='in' in2='blur'/%3E%3CfeComposite in='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3Cg id='Grupo_179' data-name='Grupo 179' transform='translate(-1775.787 -858.787)'%3E%3Cg transform='matrix(1, 0, 0, 1, 1775.79, 858.79)' filter='url(%23Elipse_8)'%3E%3Ccircle id='Elipse_8-2' data-name='Elipse 8' cx='17.5' cy='17.5' r='17.5' transform='translate(9 6)' fill='%23fff'/%3E%3C/g%3E%3Cpath id='arrow-left-s-line' d='M9.778,9.637l3.112,3.111L12,13.638l-4-4,4-4,.889.889Z' transform='translate(1792.087 872.564)' fill='%23464646'/%3E%3C/g%3E%3C/svg%3E%0A");
+                background-size: 100%;
+                background-repeat: no-repeat;
+                display: block;
+                opacity: 1;
+                margin: 0 auto;
+                height: 50px;
+                width: 50px;
+            }
+        }
+
+        &.carousel-next {
+            right: 5px;
+
+            &:before {
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='53' height='53' viewBox='0 0 53 53'%3E%3Cdefs%3E%3Cfilter id='Elipse_8' x='0' y='0' width='53' height='53' filterUnits='userSpaceOnUse'%3E%3CfeOffset dy='3' input='SourceAlpha'/%3E%3CfeGaussianBlur stdDeviation='3' result='blur'/%3E%3CfeFlood flood-opacity='0.161'/%3E%3CfeComposite operator='in' in2='blur'/%3E%3CfeComposite in='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3Cg id='Grupo_186' data-name='Grupo 186' transform='translate(1828.787 905.787) rotate(180)'%3E%3Cg transform='matrix(-1, 0, 0, -1, 1828.79, 905.79)' filter='url(%23Elipse_8)'%3E%3Ccircle id='Elipse_8-2' data-name='Elipse 8' cx='17.5' cy='17.5' r='17.5' transform='translate(44 41) rotate(180)' fill='%23fff'/%3E%3C/g%3E%3Cpath id='arrow-left-s-line' d='M9.778,9.637l3.112,3.111L12,13.638l-4-4,4-4,.889.889Z' transform='translate(1792.087 872.564)' fill='%23464646'/%3E%3C/g%3E%3C/svg%3E%0A");
+                background-size: 100%;
+                background-repeat: no-repeat;
+                display: block;
+                opacity: 1;
+                margin: 0 auto;
+                height: 50px;
+                width: 50px;
+            }
+        }
+    }
+  }
+}

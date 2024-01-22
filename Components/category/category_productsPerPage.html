@@ -1,0 +1,16 @@
+{{ ##
+    Description: Renders a dropdown list to select the quantity of 
+                 products to be showed on a page based on the 
+                 "page_size.options" set in settings.json
+    Params: []
+    Usage:
+        category_productsPerPage
+## }}
+
+{{ "Produtos por página" }}:
+<select name="page_size" id="page_size" onChange="setPageSize(this.value);">
+    <option value="" selected disabled hidden>{{ "Selecione" }}</option>
+    {{~ for option in settings.page_size.options ~}}
+        <option value='{{option}}'>{{ option }}</option>
+    {{~ end ~}}
+</select>

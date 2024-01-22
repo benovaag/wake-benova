@@ -1,0 +1,32 @@
+<div class="subscription">
+    <div class="subscription-content">
+        <div class="subscription-select__flex">
+            <p class="subscription-select__title">Quantidade</p>
+    
+            <div class="product-quantity__buttons">
+                <input type="text" readonly="" class="product-quantity__input" id="product-quantity__input" name="product-quantity__input" value="1" min="1" max="{{ stock }}">
+                <div class="product-quantity__select">
+                    <p class="product-quantity__component product-quantity__add">+</p>
+                    <p class="product-quantity__component product-quantity__remove">-</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subscription-select__flex">
+            <p class="subscription-select__title">Entrega</p>
+            <select class="subscription-select" name="subscription-recurring-type" id="subscription-recurring-type"> 
+            {{~ for subscription_group in subscription_groups ~}}
+                {{~ for type in subscription_group.recurring_types ~}}
+                    <option subscription-group-id="{{ subscription_group.subscription_group_id }}" 
+                        value="{{ type.recurring_type_id }}" >{{ type.name }} ({{ type.days }} dias)</option>
+                {{~ end ~}}
+            {{~ end ~}}
+            </select>
+        </div>
+        <button type="button" 
+        class="subscription-button" 
+        value="{{ variantId }}" onclick="{{ btn_click }}" {{~ if disabled ~}} disabled {{~ end ~}}>
+            COMPRAR COM RECORRÊNCIA
+        </button>
+    </div>
+</div>

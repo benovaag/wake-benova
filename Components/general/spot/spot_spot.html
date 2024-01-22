@@ -1,0 +1,54 @@
+<div class="spot">
+    <p class="spot-condition">{{ product.condition }}</p>
+
+    {{~ if product.prices.discount_percentage > 0 || product.promotions.size > 0 ~}}
+    <div class="stamps">
+        {{ spot_discount prices: product.prices }}
+        {{ spot_stamps promotions: product.promotions }}
+    </div>
+    {{~ end ~}}
+
+    <div class="spot-images">
+        {{ if product.images.size > 0 }}
+        <a class="spot-images__href" href="/{{product.alias}}">
+            <img class="spot-images__image" alt="Imagem de Produto" src="{{ product.images[0].url }}" loading="lazy" loading="lazy" />
+            {{~ secondImage = "" ~}}
+            {{~ for image in product.images offset:1 ~}}
+            {{~ if !image.print ~}}
+            {{~ secondImage = image.url ~}}
+            {{~ break ~}}
+            {{~ end ~}}
+            {{~ end ~}}
+        </a>
+        {{ else }}
+        <a class="spot-images__href" href="/{{product.alias}}">
+            <img class="spot-images__primary" src="https://benova.fbitsstatic.net/img/p/produto-nao-possui-foto-no-momento/sem-foto.jpg?w=330&h=330&v=20220125251131&qs=ignore" alt="Sem foto" title="Sem foto" loading="lazy" />
+        </a>
+        {{ end }}
+    </div>
+
+    <div class="spot-content">
+        <a href="/{{product.alias}}" class="spot-title" title="{{ product.product_name }}">
+            {{ product.product_name }}
+        </a>
+
+        <p class="spot-favorite">Avaliações: {{product.average_rating}}</p>
+
+        <div class="spot-bottom">
+            {{ if product.prices }}
+            <div class="spot-price">
+                {{ spot_price prices: product.prices }}
+            </div>
+            {{ end }}
+
+            {{ if product.available }}
+            <div class="spot-button">
+                <a href="/{{product.alias}}" class="spot-button__buy">Comprar</a>
+                {{ spot_wishlistButton product_id: product.product_id }}
+            </div>
+            {{ else }}
+            <p class="spot-unavailable">Produto Indisponível</p>
+            {{ end }}
+        </div>
+    </div>
+</div>

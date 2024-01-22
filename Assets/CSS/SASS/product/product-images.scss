@@ -1,0 +1,262 @@
+.product-images {
+
+    @include device(desktop) {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    @include device(mobile) {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .product-thumbnails:not(:has(.slick-prev, .slick-next)) .slick-list {
+        height: auto!important;
+    }
+
+    .product-thumbnails {
+        width: 100%;
+
+        @include device(desktop) {
+            max-width: 160px;
+            margin: 25px 0;
+
+            .slick-list {
+                // min-height: 96.8%;
+            }
+        }
+
+        @include device(mobile) {
+            order: 2;
+        }
+
+        .slick-arrow {
+            @include device(desktop) {
+                width: 100%;
+                height: 20px;
+                transform: translate(0, 0);
+                transition: .2s linear;
+            }
+
+            @include device(mobile) {
+                position: relative;
+                top: initial;
+                transform: initial;
+            }
+
+            img {
+                display: none;
+            }
+        }
+
+        .slick-prev {
+            @include device(desktop) {
+                position: absolute;
+                top: -25px;
+                margin: 0 auto;
+                right: 0;
+                left: 0;
+                z-index: 9;
+
+                &:before {
+                    transform: rotate(180deg);
+                }
+            }
+
+            @include device(mobile) {
+                left: 0;
+
+                &:before {
+                    transform: rotate(90deg);
+                }
+            }
+
+            &:before {
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='41.049' viewBox='0 0 22 41.049'%3E%3Cg id='Slider_left' data-name='Slider left' transform='translate(30.494 43.045) rotate(180)'%3E%3Cpath id='Caminho_141' data-name='Caminho 141' d='M30.061,23.56,11.009,42.612a1.472,1.472,0,1,1-2.081-2.081L26.954,22.519,8.928,4.508a1.472,1.472,0,0,1,2.081-2.081L30.061,21.479a1.466,1.466,0,0,1,0,2.081Z' transform='translate(0 0)' fill='%23707070'/%3E%3C/g%3E%3C/svg%3E%0A");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                width: 12px;
+                height: 22px;
+                display: block;
+                opacity: 1;
+                margin: 0 auto;
+                transform: rotate(90deg);
+            }
+        }
+
+        .slick-next {
+            @include device(desktop) {
+                position: absolute;
+                top: auto;
+                bottom: -25px;
+                margin: 0 auto;
+                right: 0;
+                left: 0;
+                z-index: 9;
+            }
+
+            @include device(mobile) {
+                right: 0;
+
+                &:before {
+                    transform: rotate(-90deg);
+                }
+            }
+
+            &:before {
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='41.049' viewBox='0 0 22 41.049'%3E%3Cg id='Slider_Right' data-name='Slider Right' transform='translate(-8.494 -1.996)'%3E%3Cpath id='Caminho_141' data-name='Caminho 141' d='M30.061,23.56,11.009,42.612a1.472,1.472,0,1,1-2.081-2.081L26.954,22.519,8.928,4.508a1.472,1.472,0,0,1,2.081-2.081L30.061,21.479a1.466,1.466,0,0,1,0,2.081Z' transform='translate(0 0)' fill='%23707070'/%3E%3C/g%3E%3C/svg%3E%0A");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                width: 12px;
+                height: 22px;
+                display: block;
+                opacity: 1;
+                margin: 0 auto;
+                transform: rotate(90deg);
+            }
+        }
+
+        .product-thumbnails__item {
+            &.product-thumbnails__ativa {
+                .product-thumbnails__image {
+                    border: 1px solid #7F00A6;
+                }
+            }
+
+            .product-thumbnails__image {
+                border: 1px solid transparent;
+                transition: .2s linear;
+                cursor: pointer;
+
+                &.slick-active {
+                    border: 1px solid #7F00A6;
+                }
+
+                @include device(desktop) {
+                    &:hover {
+                        border: 1px solid #7F00A6;
+                    }
+                }
+            }
+        }
+    }
+
+    .product-image {
+        @include device(desktop) {
+            width: 85%;
+        }
+
+        @include device(mobile) {
+            order: 1;
+            width: 100%;
+        }
+    }
+
+    .product-principal {
+        background-position: 50% 50%;
+        position: relative;
+        overflow: hidden;
+
+
+        @include device(desktop) {
+            cursor: zoom-in;
+        }
+
+        & img:hover {
+            opacity: 0;
+        }
+
+        img {
+            transition: opacity .5s;
+            display: block;
+            width: 100%;
+            max-height: 730px;
+            object-fit: cover;
+        }
+
+    }
+}
+
+.galeriaImg {
+    @include device(desktop) {
+        display: none !important;
+    }
+
+    @include device(mobile) {
+
+        .galeria-mobile {
+            height: auto !important;
+            max-width: 100%;
+        }
+
+        .slick-arrow {
+            display: none!important;
+        }
+
+        .slick-dots {
+
+            bottom: -40px;
+
+            li {
+                width: 15px;
+                height: 15px;
+
+                button {
+                    content: '';
+                    background: #FFF;
+                    border: 1px solid #B7B7B7;
+                    border-radius: 50%;
+                    width: 15px;
+                    height: 15px;
+                    margin: 0 5px;
+                    transition: ease-in-out .3s;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+
+                &.slick-active button {
+                    background: #B7B7B7;
+                }
+            }
+        }
+    }
+}
+
+.zoom-img .slick-list{
+    overflow: unset !important;
+}
+.zoom-img{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.zoom-img img.slick-current.slick-active {
+    transform: translate(10px, 10px) scale(1.5);
+    height: 100%;
+}
+.zoom-img .close-img{
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    z-index: 99999;
+}

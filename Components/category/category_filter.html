@@ -1,0 +1,45 @@
+<div class="category-filter">
+    <button class="category-filter__button">Abrir Filtros</button>
+
+    <div class="category-items">
+        <button class="category-filter__button-close">X</button>
+        {{ if aggregations?.filters }}
+        {{ for filter in aggregations.filters }}
+
+        <div class="filter-combo" id="filter-combo">
+            <p class="filter-name filter-dropdown">{{ filter.field }}</p>
+
+            {{~ if filter.field == "Cor" || filter.field == "cor" ~}}
+            <ul class="filter-items filter-items__color" id="itemList">
+                {{ else }}
+                <ul class="filter-items" id="itemList">
+                    {{ end }}
+                    {{ for value in filter.values }}
+                    {{~ if filter.field == "Cor" || filter.field == "cor" ~}}
+                    <label id="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}" class="">
+                        <input type="radio" class="hidden" id="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}" value="{{ filter.field }}__{{ value.name }}" onclick="setFilter(this.value)">
+                        <img src="/colorhandler?cor={{ value.name }}" alt="{{ value.name }}" title="{{ value.name }}">
+                    </label>
+                    {{ else }}
+                    <li class="filter-items__item">
+                        <input class="filter-items__check" type="checkbox" id="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}" value="{{ filter.field }}__{{ value.name }}" onchange="setFilter(this.value)">
+                        <span class="filter-items__checkmark"></span>
+                        <label class="filter-items__name" for="{{ value.name }}">{{value.name}} <span>{{"( " + value.quantity + " )"}}</span></label>
+                    </li>
+                    {{ end }}
+                    {{ end }}
+                </ul>
+                <button id="verMaisBtn">+ Veja mais</button>
+        </div>
+        {{ end }}
+
+        {{ if settings.filter.price_type == "category_filterPriceField" && aggregations.minimum_price > 0 }}
+        {{ category_filterPriceField minimum_price: aggregations.minimum_price maximum_price: aggregations.maximum_price }}
+        {{ else if settings.filter.price_type == "category_filterPriceRange" && aggregations.minimum_price > 0}}
+        {{ if aggregations?.price_ranges }}
+        {{ category_filterPriceRange price_ranges: aggregations.price_ranges }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </div>
+</div>

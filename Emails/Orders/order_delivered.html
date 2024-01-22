@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
+
+<head>
+    <title>Pedido Entregue - {{ configuracao.nome_ecommerce }}</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <style type="text/css">
+  table,
+  thead,
+  tbody,
+  tfoot,
+  th,
+  tr,
+  td,
+  h1,
+  p,
+  a,
+  img {
+    border: 0 none;
+    color: #707070;
+    font: 16px 'Roboto', sans-serif;
+    line-height: 20px;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    display: block;
+  }
+
+  .header {
+    background-color: #7F00A6;
+    display: inline-block;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .header-text {
+    float: left;
+    text-align: left;
+    color: #FFF;
+  }
+
+  .header-href {
+    float: right;
+    color: #FFF !important;
+    font-weight: bold;
+  }
+
+  .footer {
+    margin-top: 40px;
+    display: block;
+  }
+
+  .footer tr,
+  .footer td {
+    width: 100%;
+    display: block;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+  }
+
+  .footer-href {
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: underline;
+    color: #707070 !important;
+  }
+
+  .tbody {
+    padding: 0 15px;
+    display: block;
+  }
+
+  .tbody-title {
+    color: #000;
+    font-weight: bold;
+    padding-bottom: 15px;
+  }
+
+  .aviso {
+    background: #000000;
+    border-radius: 5px;
+    padding: 10px;
+    color: #FFF;
+    width: fit-content;
+    margin: 0 auto;
+    font-weight: bold;
+  }
+
+  .tbody-product__image {
+    display: flex;
+    margin-bottom: 15px;
+  }
+</style>
+</head>
+
+<body>
+    <table cellpadding="0" cellspacing="0" width="600">
+        <thead>
+            <tr>
+                <th>
+                    <a href="https://www.benova.com.br/">
+                        <img src="https://benova.fbitsstatic.net/sf/img/emails/email-topo.png?theme=version&amp;v=202311062103&amp;w=" alt="{{ configuracao.nome_ecommerce }}" title="{{ configuracao.nome_ecommerce }}" />
+                    </a>
+                </th>
+            </tr>
+            <tr class="header">
+                <th class="header-text">
+                    <p class="header-text">
+                        Nº do Pedido {{pedido?.pedido_id}}
+                    </p>
+                </th>
+                <th class="header-href">
+                    <a class="header-href" href="{{ configuracao.url_carrinho }}MinhaConta/Pedido/">MEUS PEDIDOS</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr>
+                <td>
+                    <p class="tbody-title" style="text-transform: none;">Oi, {{ pedido.usuario.nome }}!</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        O seu pedido foi entregue e ficamos muito felizes em te atender :)
+                        <br>
+                        Obrigada por comprar na <b>{{ configuracao.nome_ecommerce }}</b>.
+                    </p>
+                    <br>
+                    <img src="https://benova.fbitsstatic.net/sf/img/emails/email-entregue.png?theme=version&amp;v=202311062103&amp;w=" style="margin: 0 auto;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="tbody-title">Endereço de entrega</p>
+                    <p>{{ pedido.frete.endereco.destinatario }}<br>
+                        {{ pedido.frete.endereco.logradouro }}, {{ pedido.frete.endereco.numero }} - {{ pedido.frete.endereco.complemento }} <br>
+                        {{ pedido.frete.endereco.bairro }}<br>
+                        {{ pedido.frete.endereco.cidade }}/{{ pedido.frete.endereco.estado }} - CEP: {{ pedido.frete.endereco.cep }}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="tbody-title">Produtos Comprados</p>
+                </td>
+                {{for p in pedido.produtos}}
+            <tr class="tbody-product__image">
+                <td>
+                    <img src="{{p.imagem}}" alt="{{p.nome}}" height="120" width="120" style="margin-right: 15px;" />
+                </td>
+                <td>
+                    <p>
+                        {{p.nome}}
+                    </p>
+                    <p>
+                        {{p.atribtuos}}
+                    </p>
+                    <p>
+                        <b>Valor Unitário:</b> {{p.preco_unitario}}
+                    </p>
+                    <p>
+                        <b>Valor Total:</b> {{p.preco_total}}
+                    </p>
+                </td>
+            </tr>
+            {{end}}
+            </tr>
+            <tr>
+                <td>
+                    <p class="tbody-title">Resumo da compra</p>
+                    <p>Valor dos produtos: <span style="float: right;">{{pedido.valor_sub_total}}</span></p>
+                    <p>Frete: <span style="float: right;">{{ pedido.frete.valor_frete }}</span></p>
+                    <p>Desconto: <span style="float: right;">{{ pedido.valor_desconto }}</span></p>
+                    <p>Valor total: <span style="float: right;">{{ pedido.valor_total }}</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{~ for pagamento in pedido.formapagamento ~}}
+                    <p class="tbody-title">Forma de pagamento</p>
+                    <p>Forma de pagamento: {{ pagamento?.nome }}</p>
+                    <br>
+                    {{ if pagamento?.boleto }}
+                    <a href="{{ pagamento?.boleto?.url }}">Imprimir boleto</a>
+                    {{end}}
+
+                    {{ if pagamento?.pix }}
+                    <a href="{{ pagamento?.pix?.qrcode_link_pagamento }}">Link de pagamento</a>
+                    <img src="{{ pagamento?.pix?.qrcode_imagem_url }}">
+                    <p>{{ pagamento?.pix?.codigo_qrcode }}</p>
+                    <p>{{ pagamento?.pix?.dt_expiracao_qr_code }}</p>
+                    {{end}}
+
+                    {{end}}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot class="footer">
+    <tr>
+        <td>
+            <img src="https://benova.fbitsstatic.net/sf/img/emails/email-rodape.png?theme=version&amp;v=202311062103&amp;w=" alt="{{ configuracao.nome_ecommerce }}" title="{{ configuracao.nome_ecommerce }}" />
+            <p class="footer-text">
+                Por favor não responda este e-mail. Para qualquer dúvida ou informações
+                <a class="footer-href" href="https://www.benova.com.br/fale-conosco"> clique aqui</a>
+            </p>
+        </td>
+    </tr>
+</tfoot>
+    </table>
+</body>
+
+</html>

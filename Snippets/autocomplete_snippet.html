@@ -1,0 +1,22 @@
+{{~ for suggestion in data.autocomplete.suggestions ~}}
+<p class="autocomplete-suggestion" onclick="search(event, '{{ suggestion }}')">
+    {{ suggestion }}
+</p>
+{{~ end ~}}
+{{~ for product in data.autocomplete.products ~}}
+<a class="autocomplete-href" href="/{{ product.alias }}">
+    <div class="autocomplete-item" id="{{ product.alias }}">
+        <div class="autocomplete-item__column">
+            {{~ if product.images.size > 0 ~}}
+            {{~ firstImage = product.images | array.first ~}}
+            {{~ imageUrl = firstImage.url ~}}
+            {{~ end ~}}
+            <img class="autocomplete-item__image" src="{{ imageUrl }}" alt="" title="" loading="lazy">
+            <p class="autocomplete-item__name">{{ product.product_name }}</p>
+        </div>
+        <p class="autocomplete-item__price">
+            {{ product.prices.price | math.format "c" "pt-BR" }}
+        </p>
+    </div>
+</a>
+{{~ end ~}}

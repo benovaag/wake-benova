@@ -1,0 +1,5 @@
+{{~ qs_var = "?" # if the source contains a query string or not ~}}
+    {{~ if source | string.contains "?" ~}}
+    {{~ qs_var = "&" ~}}
+{{~ end ~}}
+<img src="{{source}}" alt="{{alt}}" title="{{title}}" class="{{class}}"/>    

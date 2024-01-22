@@ -1,0 +1,12 @@
+<section class="pagination">
+    <ul class="pagination-list">
+        {{ func totalPages
+            total = products.total_count / page_size | math.ceil | string.append ""
+            ret total | string.to_int
+        end }}
+
+        {{ total = totalPages }}
+
+        <div class="totalpages" style="display: none;">{{total}}</div>
+    </ul>
+</section>

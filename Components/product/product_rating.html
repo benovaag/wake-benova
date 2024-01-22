@@ -1,0 +1,72 @@
+{{ if rating == 5 }}
+    <div class="product-ratings">
+        <div class="reviews-client__stars">
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+        </div>
+        <a class="anchor-review__link" href="#product-reviews">Avaliar produto</a>
+    </div>
+{{ end }}
+{{ if rating == 4 }}
+    <div class="product-ratings">
+        <div class="reviews-client__stars">
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__off"></span>
+        </div>
+        <a class="anchor-review__link" href="#product-reviews">Avaliar produto</a>
+    </div>
+{{ end }}
+{{ if rating == 3 }}
+    <div class="product-ratings">
+        <div class="reviews-client__stars">
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+        </div>
+        <a class="anchor-review__link" href="#product-reviews">Avaliar produto</a>
+    </div>
+{{ end }}
+{{ if rating == 2 }}
+    <div class="product-ratings">
+        <div class="reviews-client__stars">
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+        </div>
+        <a class="anchor-review__link" href="#product-reviews">Avaliar produto</a>
+    </div>
+{{ end }}
+{{ if rating == 1 }}
+    <div class="product-ratings">
+        <div class="reviews-client__stars">
+            <span class="reviews-star__on"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+        </div>
+        <a class="anchor-review__link" href="#product-reviews">Avaliar produto</a>
+    </div>
+{{ end }}
+{{ if rating == 0 }}
+    <div class="product-ratings">
+        <div class="reviews-client__stars">
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+            <span class="reviews-star__off"></span>
+        </div>
+        <a class="anchor-review__link" href="#product-reviews">Avaliar produto</a>
+    </div>
+{{ end }}

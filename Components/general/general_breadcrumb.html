@@ -1,0 +1,14 @@
+<section class="breadcrumbs">
+  {{~ if settings.breadcrumb?.home_text ~}}
+  <a class="breadcrumbs-href" href="/" title="">{{ settings.breadcrumb.home_text }}</a>
+  {{~ end ~}}
+  {{~ for breadcrumb in breadcrumbs ~}}
+  {{~ breadcrumbLink = "" ~}}
+  {{~ if breadcrumb.link | string.starts_with "/" ~}}
+  {{~ breadcrumbLink = breadcrumb.link ~}}
+  {{~ else ~}}
+  {{~ breadcrumbLink = "/" | string.append breadcrumb.link ~}}
+  {{~ end ~}}
+  <a href="{{ breadcrumbLink }}" title="" {{ if for.last ~}} class="breadcrumbs-href__last" {{~ end ~}} class="breadcrumbs-href">{{ breadcrumb.text }}</a>
+  {{~ end ~}}
+</section>

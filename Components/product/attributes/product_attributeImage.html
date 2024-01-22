@@ -1,0 +1,58 @@
+{{ ##
+    Description: Renders attributes of type "DIV com foto do produto variante"
+    Params:
+        - attribute_selections: product attribute selections data
+        - product_id: page product ID
+    Usage:
+        product_attributeCombo attribute_selections: attribute_selections product_id: product_id
+## }}
+
+{{func select_div_with_image(attr)
+    ret attr.display_type == "DIV com foto do produto variante"
+end}}
+{{~ divAttributes = attribute_selections.selections | array.filter @select_div_with_image ~}}
+
+{{~ if divAttributes ~}}
+    <div class="attribute-container" attribute-selections>
+        <div class="attribute-container__itens">
+            {{~ for attr in divAttributes ~}}
+                <p class="attribute-container__title">{{ attr.name | string.upcase }}</p>
+                <ul class="attribute-container__item">
+                    {{~ for value in attr.values ~}}
+                        {{~ if value.selected ~}}
+                            <input type="hidden" id="hidden-selected-attribute-{{product_id}}-{{ attr.attribute_id }}" name="hidden-selected-attribute-{{ attr.attribute_id }}" value="{{ value.value }}">
+                        {{~ end ~}}
+
+                        {{~ optionId = attr.attribute_id + "__" + value.value + "__" + product_id ~}}
+                        {{~ if value.print_url ~}}
+                            {{~ if attr.vary_by_parent ~}}
+                                <li class="attribute-container__select">
+                                    <label>
+                                        <input product-id = "{{ product_id }}" attribute-id = "{{ attr.attribute_id }}" type="radio" class="attribute-select" onclick='location = this.value' value='{{ "/" | string.append value.alias }}' id="{{ optionId }}" autocomplete="off" {{ if value.selected }} checked {{ end }} {{ if !value.available }} {{ end }}>
+                                        <img class="attribute-selection__image" src="{{ value.print_url }}" alt="{{ value.value }}" title="{{ value.value }}">
+                                    </label>
+                                </li>
+                            {{~ else ~}}
+                                <li class="attribute-container__select">
+                                    <label>
+                                        <input product-id = "{{ product_id }}" attribute-id = "{{ attr.attribute_id }}" type="radio" class="attribute-select" onclick="SelectAttribute(this);" value="{{ value.value }}" id="{{ optionId }}" autocomplete="off" {{ if value.selected }} checked {{ end }} {{ if !value.available }} {{ end }}>
+                                        <img class="attribute-selection__image" src="{{ value.print_url }}" alt="{{ value.value }}" title="{{ value.value }}">
+                                    </label>
+                                </li>
+                            {{~ end ~}}
+                        {{~ else ~}}
+                            {{~ if attr.vary_by_parent ~}}
+                                <input product-id = "{{ product_id }}" attribute-id = "{{ attr.attribute_id }}" type="radio" class="attribute-select" onclick='location = this.value' value='{{ "/" | string.append value.alias }}' id="{{ optionId }}" autocomplete="off" {{ if value.selected }} checked {{ end }} {{ if !value.available }} {{ end }}>
+                                <label class="attribute-selection selection-success" for="{{ optionId }}">{{ value.value }}</label>
+                            {{~ else ~}}
+                                <input product-id = "{{ product_id }}" attribute-id = "{{ attr.attribute_id }}" type="radio" class="attribute-select" onclick="SelectAttribute(this);" value="{{ value.value }}" id="{{ optionId }}" autocomplete="off" {{ if value.selected }} checked {{ end }} {{ if !value.available }} {{ end }}>
+                                <label class="attribute-selection selection-success" for="{{ optionId }}">{{ value.value }}</label>
+                            {{~ end ~}}
+                        {{~ end ~}}
+
+                    {{~ end ~}}
+                </ul>
+            {{~ end ~}}
+        </div>
+    </div>
+{{~ end ~}}

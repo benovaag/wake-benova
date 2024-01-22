@@ -1,0 +1,54 @@
+{{ ##
+    Description: Renders an attribute selection matrix
+    Params:
+        - product: product data
+    Usage:
+        product_view product: product
+## }}
+{{~ matrixData = attribute_selections.matrix.data ~}}
+{{~ matrixRow = attribute_selections.matrix.row ~}}
+{{~ matrixColumn = attribute_selections.matrix.column ~}}
+{{~ rowSize = matrixRow.values.size - 1 ~}}
+{{~ columnSize = matrixColumn.values.size - 1 ~}}
+<div class="attribute-container" attribute-selections>
+    <div class="attribute-selections">
+        <table class="matrix-table">
+            <tr>
+            <p class="attribute-container__title">{{ matrixRow.name }} / {{ matrixColumn.name }}</p>
+            {{~ for col in matrixColumn.values ~}}
+                {{~ if matrixColumn.display_type == "DIV com foto do produto variante" ~}}
+                    <th class="matrix-title">
+                        <img src="{{ col.print_url }}" alt="{{ matrixColumn.name }}_{{ col.value }}" title="{{ col.value }}">
+                    </th>
+                {{~ else ~}}
+                    <th class="matrix-title">{{ col.value }}</th>
+                {{~ end ~}}
+            {{~ end ~}}
+            </tr>
+            {{~ for i in 0..rowSize ~}}
+                <tr>
+                    {{~ if matrixRow.display_type == "DIV com foto do produto variante" ~}}
+                        <th class="matrix-title">
+                            <img src="{{ matrixRow.values[i].print_url }}" alt="{{ matrixRow.name }}_{{ matrixRow.values[i].value }}" title="{{ matrixRow.values[i].value }}">
+                        </th>
+                    {{~ else ~}}
+                        <th class="matrix-title">{{ matrixRow.values[i].value }}</th>
+                    {{~ end ~}}
+                    {{~ for j in 0..columnSize ~}}
+                        {{~ currentData = matrixData[i][j] ~}}
+                    <td class="matrix-column">
+                        <input matrix-input-quantity type="number" class="form-control"
+                        product-variant-id="{{ currentData.product_variant_id }}"
+                        id="matrix-number-{{ currentData.product_variant_id }}"
+                        {{~ stock = 0 ~}}
+                        {{ if !currentData.available }} disabled="true"
+                        {{ else }} {{ stock = currentData.stock }}
+                        {{ end }}
+                        min="0" max="{{ stock }}">
+                    </td>
+                    {{~ end ~}}
+                </tr>
+            {{~ end ~}}
+        </table>
+    </div>
+</div>

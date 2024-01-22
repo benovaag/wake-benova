@@ -1,0 +1,43 @@
+{{ ##
+Description: Renders navbar with links from menuGroup query
+Params:
+- menu_groups: menu groups list
+- position: the menu group position to use
+Usage:
+navbar menu_groups: data...menu_group position: "Topo Header"
+## }}
+{{~ menu_group = menu_groups | array.filter @(do; ret $0.position == position ;end) | array.first ~}}
+{{~ if menu_group ~}}
+{{~ menus = menu_group.menus | group.by @(do; ret $0.parent_menu_id;end) ~}}
+{{~ top_level = menus | group.get null ~}}
+{{~ end ~}}
+
+<nav class="navigate" id="open-mobile">
+    <div class="menu-mobile__header">
+        {{ header_userLogin checkout_url: store.urls.checkout }}
+
+        <span onclick="overlayMouseOut()" id="close-trigger__menu" class="close-menu__mobile" title="Fechar menu"></span>
+    </div>
+    <div class="navigate-container">
+        <ul class="navigate-container__itens content">
+            {{~ if top_level ~}}
+            {{~ for top_menu in top_level | array.sort "order"~}}
+            {{ header_navItem menus: menus current_menu: top_menu }}
+            {{~ end ~}}
+            {{~ end ~}}
+        </ul>
+    </div>
+    <div class="header-wpp__mobile">
+        <p class="header-wpp__text">Fale com a gente</p>
+        <div id="header-wpp" class="header-wpp">
+            <a class="header-wpp__href" href="https://api.whatsapp.com/send?l=pt&phone=554121035304&text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es!">
+                <span>Luciano</span>
+                (41) 2103-5304
+            </a>
+            <a class="header-wpp__href" href="https://api.whatsapp.com/send?l=pt&phone=5541988042405&text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es!">
+                <span>Lucas</span>
+                (41) 98804-2405
+            </a>
+        </div>
+    </div>
+</nav>

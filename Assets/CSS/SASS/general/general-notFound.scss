@@ -1,0 +1,50 @@
+.not-found {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .not-found__title {
+        text-align: center;
+        padding-bottom: 50px;
+        color: #232323;
+        font-weight: 600;
+
+        @include device(desktop) {
+            font-size: 26px;
+            line-height: 28px;
+        }
+
+        @include device(mobile) {
+            font-size: 24px;
+            line-height: 26px;
+        }
+    }
+
+    .not-found__href {
+        text-transform: uppercase;
+        color: #fff;
+        background: #0FAE5A;
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+        display: block;
+        padding: 14px;
+        margin: 0 auto;
+        transition: .2s linear;
+        font-weight: 500;
+        border-radius: 5px;
+
+        @include device(desktop) {
+            font-size: 16px;
+            line-height: 18px;
+
+            &:hover {
+                background: #0B954C;
+            }
+        }
+
+        @include device(mobile) {
+            font-size: 14px;
+            line-height: 14px;
+        }
+    }
+}

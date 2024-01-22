@@ -1,0 +1,82 @@
+{{ ##
+Description: Renders the product view
+Params:
+- attribute_selections: product attribute selections data
+Usage:
+product_attributeMatrix attribute_selections: attribute_selections
+## }}
+
+{{~ selected_variant = product.attribute_selections?.selected_variant ~}}
+<div id="product-view__{{ product.product_id }}">
+
+    <div class="add-cart-alert" id="add-cart-alert" style="display: flex; justify-content: center; visibility: hidden;"></div>
+
+    <div class="product-view__columns">
+        <div class="product-column product-column__large">
+            {{~ if selected_variant && selected_variant.images && selected_variant.images.size > 0 ~}}
+            {{ product_image images: product.attribute_selections.selected_variant.images }}
+            {{~ else ~}}
+            {{ product_image images: product.images }}
+            {{~ end ~}}
+        </div>
+        <div class="product-column product-column__small">
+            <h1 class="product-title">{{ product.product_name }}</h1>
+
+            <div class="sku-brand">
+                <p class="product-sku"><b>Código:</b> {{ product.sku }}</p>
+                
+                {{~ if product.product_brand ~}}
+                    <p class="product-brand" style="font-size: 14px;color: #232323;font-weight: 500;opacity: .5;"><b>Marca: </b> {{product.product_brand.name}}</p>
+                {{~ end ~}}
+
+                <p class="product-condition"><b>Status de uso:</b> {{ product.condition }}</p>
+                {{ product_rating rating: product.average_rating displayed_installment: "" }}
+            </div>
+
+            {{~ if product.prices.discount_percentage > 0 || product.promotions.size > 0 ~}}
+            <div class="product-stamps">
+                {{ product_stamps promotions: product.promotions }}
+                {{ spot_discount prices: product.prices displayed_installment: "" }}
+            </div>
+            {{~ end ~}}
+
+            {{~ if selected_variant ~}}
+            {{~ installment_plans = selected_variant.prices.installment_plans ~}}
+            {{ product_price prices: selected_variant.prices }}
+            {{~ else ~}}
+            {{ product_price prices: product.prices displayed_installment: "" }}
+            {{~ end ~}}
+
+            {{~ available = product.available ~}}
+            {{~ if available ~}}
+            <div class="product-qtd-cep">
+                <div class="product-quantity">
+                    Quantidade
+                    <div class="product-quantity__buttons">
+                        <p class="product-quantity__component product-quantity__remove">-</p>
+                        <input type="text" readonly="" class="product-quantity__input" id="product-quantity__input" name="product-quantity__input" value="1" min="1" max="{{ stock }}">
+                        <p class="product-quantity__component product-quantity__add">+</p>
+                    </div>
+                </div>
+
+                {{ product_cep product: product }}
+
+
+            </div>
+            <div class="product-buy-wishlist">
+                {{ product_attribute product: product }}
+            </div>
+            {{~ else ~}}
+            <div class="product-buttons__unavailable">
+                <p class="product-unavailable">Produto indisponível</p>
+                <div class="avise">
+                    <input type="text" placeholder="Seu nome" class="avise-me__item avise-me__nome">
+                    <input type="text" placeholder="Seu e-mail" class="avise-me__item avise-me__email">
+                    <button class="avise-me__button">Avise-me</button>
+                    <span class="avise-me__msg"></span>
+                </div>
+            </div>
+            {{~ end ~}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<section class="header-middle">
+    <div class="content">
+        <div class="header-menu_logo">
+            <span class="header-menu__icon" id="open-trigger__menu" title="Abrir menu"></span>
+
+            <a class="header-logo__href" href="/">
+                {{~ image_asset path: "logo.png" class: "header-logo__image" alt: "Logo Benova" title: "Benova" ~}}
+            </a>
+
+        </div>
+
+        <form class="header-search" onsubmit="search(event, null)" id="open-search">
+            <div class="header-search__container autocomplete">
+                <input id="search-bar" class="header-search__input form-control" type="search" placeholder='{{ "Procure por código da peça, nome ou aplicação..." }}' autocomplete="off">
+                <div id="autocomplete-list" class="autocomplete-items"></div>
+                <button class="header-search__button" type="submit" aria-label="Pesquisar produto"></button>
+            </div>
+        </form>
+
+        <div class="header-icons">
+            <button id="header-icon__wpp" class="header-icon__wpp" title="WhatsApp" aria-label="WhatsApp" onclick="callMouseOver()">
+                <div id="header-wpp" class="header-wpp">
+                    <a class="header-wpp__href" href="https://api.whatsapp.com/send?l=pt&phone=554121035304&text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es!">
+                        <span>Benova</span>
+                        (99) 9999-9999
+                    </a>
+                    <a class="header-wpp__href" href="https://api.whatsapp.com/send?l=pt&phone=5541988042405&text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es!">
+                        <span>Benova</span>
+                        (99) 9999-99995
+                    </a>
+                </div>
+            </button>
+
+            {{ header_userLogin checkout_url: store.urls.checkout }}
+
+            <a class="header-icon header-icon__wishlist" href="/meus-favoritos" aria-label="Meus Favoritos" title="Meus Favoritos"></a>
+
+            <div id="header-cart" class="header-cart">
+            </div>
+        </div>
+    </div>
+    <div id="overlay" onclick="overlayMouseOut()"></div>
+</section>

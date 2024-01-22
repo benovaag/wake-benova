@@ -1,0 +1,67 @@
+{{ ##
+Description: Renders mini cart contents
+Params:
+- Uses SnippetQueries/mini_cart.graphql
+Usage:
+await client.snippet.render("mini_cart_snippet.html", ...);
+## }}
+
+{{~ checkoutUrl = "" ~}}
+{{~ productsCount = 0 ~}}
+{{~ products = null ~}}
+{{~ if data.checkout ~}}
+{{~ checkoutUrl = data.checkout.url ~}}
+{{~ productsCount = data.checkout.products.size ~}}
+{{~ products = data.checkout.products ~}}
+{{~ else ~}}
+{{~ checkoutUrl = data.shop.checkout_url ~}}
+{{~ end ~}}
+
+<div class="cart-field" onclick="cartMouseOver()">
+    <span class="cart-field__icon" title="Abrir modal de carrinho"></span>
+    <p class="cart-field__qtd">{{ productsCount }}</p>
+</div>
+
+<div id="modal-cart" class="modal-cart">
+    <div class="modal-cart__header">
+        <p class="modal-cart__title">Meu carrinho</p>
+        <span class="modal-cart__close" onclick="cartMouseOut()" title="Fechar modal de carrinho"></span>
+    </div>
+
+    {{~ if products && data.checkout.subtotal > 0 ~}}
+    <div class="modal-cart__content">
+        <div class="modal-cart__product">
+            <ul class="modal-cart__items">
+                {{~ for product in products ~}}
+                <li class="modal-cart__item">
+                    <img class="modal-cart__image" src="{{ product.image_url }}" />
+                    <p class="modal-cart__title">{{ product.name }}</p>
+                    <div class="modal-cart__texts">
+                        <p class="modal-cart__qtd">Qtde: {{ product.quantity }}</p>
+
+                        {{ if product.list_price - product.price > 0 }}
+                        <div>
+                            <p class="modal-cart__priceBefore">{{ product.list_price | math.format "c" "pt-BR" }}</p>
+                            <p class="modal-cart__price">{{ product.price | math.format "c" "pt-BR" }}</p>
+                        </div>
+                        {{ else }}
+                        <p class="modal-cart__price">{{ product.price | math.format "c" "pt-BR" }}</p>
+                        {{ end }}
+                    </div>
+                    <button class="modal-cart__trash" type="button" onclick="removeProductFromCart('{{ product.product_variant_id }}','{{ product.quantity }}')">
+                        <span class="modal-icon__trash"></span>
+                    </button>
+                </li>
+                {{~ end ~}}
+            </ul>
+        </div>
+
+        <div class="modal-cart__bottom">
+            <p class="modal-cart__total">Total <span>{{ data.checkout.subtotal | math.format "c" "pt-BR" }}</span></p>
+            <a class="modal-cart__button cart-button__checkout" href="{{store.urls.checkout}}">Finalizar compra</a>
+        </div>
+    </div>
+    {{~ else ~}}
+    <p class="modal-cart__empty">O carrinho está vazio!</p>
+    {{~ end ~}}
+</div>

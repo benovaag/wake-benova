@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+  {{ meta_tags seo: data.hotsite.seo }}
+  {{ header_head }}
+  {{ $hasTitle = false }}
+  {{ for item in data.hotsite.seo }}
+  {{ if item.type == "TITLE" }}
+      <title>
+          {{ item.content }}
+          {{ $hasTitle = true }}
+      </title>
+          <meta name="title" content="{{item.content}}">
+      {{ end }}
+  {{ end }}
+  {{ asset type: "css" paths: ["theme.min"]}}
+  {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+
+  {{ header }}
+
+  {{ general_contentTitle contents: data.hotsite.contents title: "Faixa Amarela" }}
+
+  <section class="banner-main">
+    <div class="banner-desktop">
+      {{ home_bannerMain banners: data.hotsite.banners position: "Topo" }}
+    </div>
+    <div class="banner-mobile">
+      {{ home_bannerMain banners: data.hotsite.banners position: "Mobile Topo" }}
+    </div>
+  </section>
+
+  <section class="categories content">
+    {{ home_bannerCategories banners: data.hotsite.banners position: "Filtros Topo" }}
+  </section>
+
+  <section class="home-showcase margin content">
+    {{ general_contentTitle contents: data.hotsite.contents title: "Home - Vitrine 1" }}
+
+    {{ showcase_carousel products: data.hotsite_destaques.products.nodes }}
+  </section>
+
+  <section class="about content margin">
+    <div class="about-column__small">
+      {{ general_contentTitle contents: data.hotsite.contents title: "Home - Sobre a Curipeças" }}
+    </div>
+    <div class="about-column__large">
+      {{ home_bannerStatic banners: data.hotsite.banners position: "Centro" }}
+    </div>
+  </section>
+
+  <section class="video content margin">
+    <iframe src="https://www.youtube.com/embed/nNRqmhQ7X8Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </section>
+
+  <section class="home-showcase margin content">
+    {{ general_contentTitle contents: data.hotsite.contents title: "Home - Vitrine 2" }}
+
+    {{ showcase_carousel products: data.lancamentos.products.nodes }}
+  </section>
+
+  {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+  {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+  {{ footer }}
+  <div class="gtmID" style="display: none">{{common.gtm_id}}</div>
+  {{ gtm_home_view }}
+  {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+
+  {{ asset type: "js" paths: [
+  "slick.min.js",
+  "wishlist/wishlist",
+  "home/home-bannerMain", "home/home-bannerCategories",
+  "showcase/showcase-carousel",
+  "home/home-bannerInstagram"
+  ] options: "async"}}
+
+</body>
+
+</html>

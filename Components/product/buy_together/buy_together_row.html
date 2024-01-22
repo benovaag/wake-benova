@@ -1,0 +1,29 @@
+{{ ##
+Description: Renders the buy together row component, containing 2 product components and a price component
+Params:
+- principal_product: the page product data
+- bt_product: the buy together product data
+Usage:
+buy_list_product_view principal_product: principal_product bt_product: bt_product
+## }}
+
+<div class="buy-together__row">
+    <div product-view-div class="buy-together__item">
+        {{ buy_together_product_view product: principal_product }}
+    </div>
+
+    <span class="buy-together__plus"></span>
+
+    <div product-view-div class="buy-together__item">
+        {{ buy_together_product_view product: bt_product }}
+    </div>
+
+    <span class="buy-together__equal"></span>
+
+    <div class="buy-together__box">
+        <div class="buy-together__prices" id="buy-together-price-{{ bt_product.product_id }}-{{ principal_product.product_id }}"></div>
+        <div class="buy-together__buttons">
+            {{ buy_together_buttons add_to_cart_click: "buyTogetherAddToCartClick(this)" disabled: true}}
+        </div>
+    </div>
+</div>

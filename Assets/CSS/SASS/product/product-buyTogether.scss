@@ -1,0 +1,269 @@
+.buy-together {
+    @include device(desktop) {
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+
+    @include device(mobile) {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .buy-together__spot {
+        background: #FFFFFF;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .buy-together__title {
+        color: #000000;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+    
+        @include device(desktop) {
+            font-size: 26px;
+            line-height: 30px;
+            letter-spacing: 2.6px;
+        }
+    
+        @include device(mobile) {
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: 1.4px;
+        }
+    }
+
+    .buy-together__items {
+        border-bottom: 1px solid #D1D4C7;
+        padding: 25px 0;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        .buy-together__item {
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        .buy-together__row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include device(desktop) {
+                gap: 50px;
+            }
+
+            @include device(mobile) {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .buy-together__image {
+                max-width: 360px;
+                margin: 0 auto;
+            }
+
+            .buy-together__name {
+                font-size: 18px;
+                line-height: 22px;
+                color: #000;
+                font-weight: 500;
+                padding-top: 15px;
+            }
+
+            .spot-price {
+                margin: 25px 0;
+        
+                .spot-prices {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+        
+                    @include device(desktop) {
+                        justify-content: center;
+                    }
+            
+                    @include device(mobile) {
+                        justify-content: space-between;
+                    }
+                }
+        
+                .spot-price__before {
+                    color: #949494;
+                    display: block;
+                    font-weight: 400;
+                    font-size: 12px;
+        
+                    .spot-price__line {
+                        text-decoration: line-through;
+                    }
+                }
+        
+                .spot-price__after {
+                    color: #000000;
+                    font-weight: 800;
+                    display: block;
+                    font-size: 20px;
+        
+                    &.single-price {
+                        display: -webkit-inline-box;
+                    }
+        
+                    .spot-price__por {
+                        color: #505050;
+                    }
+                }
+        
+                .spot-payment__type {
+                    font-size: 12px;
+                    color: #707070;
+                    margin-top: 2px;
+                    max-width: 120px;
+        
+                    .spot-payment__color {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .buy-together__flex {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 16px;
+                color: #000;
+                font-weight: 500;
+            }
+
+            .buy-together__qtd {
+                height: 35px;
+                width: 100%;
+                max-width: 40px;
+                display: block;
+                color: #313131;
+                font-size: 18px;
+                font-weight: 500;
+                text-align: center;
+                border: 1px solid #9c9c9c;
+                border-radius: 5px;
+            }
+
+            .buy-together__plus:before {
+                content: "+";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30px;
+                line-height: 15px;
+                color: #000;
+                font-weight: 600;
+                height: 50px;
+                width: 50px;
+                background: #FFFFFF;
+                border-radius: 5px;
+            }
+
+            .buy-together__equal:before {
+                content: "\3d";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30px;
+                line-height: 15px;
+                color: #000;
+                font-weight: 600;
+                height: 50px;
+                width: 50px;
+                background: #FFFFFF;
+                border-radius: 5px;
+            }
+
+            .buy-together__box {
+                padding: 40px 30px;
+                width: 100%;
+                max-width: 350px;
+                border-radius: 5px;
+                background: #FFFFFF;
+
+                .product-price__after {
+                    font-size: 26px;
+                    color: #000;
+                    font-weight: 700;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+
+                    &:before {
+                        content: "Total";
+                        font-size: 20px;
+                        color: #000000;
+                        opacity: 0.5;
+                        font-weight: 400;
+                    }
+                }
+
+                .product-payment {
+                    display: none;
+                }
+
+                .product-price__before {
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #707070;
+                    font-weight: 400;
+                    text-decoration: line-through;
+                    display: block;
+                    padding-bottom: 5px;
+                    text-align: center;
+                }
+
+                .product-payment__type {
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #1d1d1b;
+                    font-weight: 400;
+                    text-align: center;
+                    margin-bottom: 5px;
+
+                    span {
+                        font-weight: bold;
+                    }
+                }
+
+                .buy-together__buttons {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    padding-top: 20px;
+
+                    .buy-together__add {
+                        background: #0FAE5A;
+                        border: none;
+                        font-size: 14px;
+                        color: #fff;
+                        font-weight: 500;
+                        width: 100%;
+                        padding: 21px;
+                        transition: .2s linear;
+                        cursor: pointer;
+                        border-radius: 5px;
+
+                        &:hover {
+                            background: #12430d;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .attribute-container {
+        .attribute-container__item {
+            margin-bottom: 20px;
+        }
+    }
+}

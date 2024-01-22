@@ -1,0 +1,59 @@
+//base
+@import "reset";
+
+// general
+@import "general/general-mediaqueries";
+@import "general/general";
+@import "general/general-overlay";
+@import "general/general-glider";
+@import "general/general-notFound";
+@import "general/general-breadcrumbs";
+
+// header
+@import "general/header/header";
+@import "general/header/header-top";
+@import "general/header/header-middle";
+@import "general/header/header-autocomplete";
+@import "general/header/header-cart";
+@import "general/header/header-login";
+@import "general/header/header-navbar";
+
+// footer
+@import "general/footer/footer-footer";
+@import "general/footer/footer-newsletter";
+
+// home
+@import "home/home-bannerMain";
+@import "home/home-categories";
+@import "home/home-about";
+@import "home/home-instagram";
+@import "home/home-faixa";
+
+// category
+@import "category/category-category";
+@import "category/category-filter";
+@import "category/category-pagination";
+@import "category/category-sort";
+@import "category/category-description";
+
+// product
+@import "product/product-view";
+@import "product/product-images";
+@import "product/product-reviews";
+@import "product/product-recommendations";
+@import "product/product-information";
+@import "product/product-unavailable";
+@import "product/product-buyTogether";
+@import "product/product-form";
+@import "product/product-attribute";
+
+// showcase
+@import "general/showcase/showcase-carousel";
+@import "general/showcase/showcase-list";
+
+//spot
+@import "general/spot/spot-spot";
+@import "general/spot/spot-showcaseList";
+
+@import "wishlist/wishlist";
+@import "institutional/institutional";

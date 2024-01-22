@@ -1,0 +1,6 @@
+
+{{~ if prices.discount_percentage > 0 ~}}
+ <p class="spot-price__discount">
+    {{ prices.discount_percentage | math.format "p0" "pt-BR" }} OFF
+ </p>
+{{~ end ~}}

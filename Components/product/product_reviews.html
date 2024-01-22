@@ -1,0 +1,81 @@
+{{ ##
+Description: Renders a customer review list for the product.
+Params:
+- reviews: the reviews given for the product by customers
+Usage:
+product_reviews reviews: data..reviews
+## }}
+
+<div class="product-reviews">
+    <div class="reviews-tabs">
+        <div class="reviews-tab reviews-tab-active" id="tab-evaluate">
+            Avaliar
+        </div>
+        <div class="reviews-tab" id="tab-opinions">
+            Opiniões
+        </div>
+    </div>
+
+    <div id="reviews-forms">
+        <div class="reviews-login" id="review-login-div">
+            <a class="reviews-login__button" id="review-login-action-div" href="{{store.urls.checkout}}Login/Authenticate?returnUrl=" role="button">Faça login e avalie</a>
+        </div>
+
+        <div class="reviews-form" id="review-form-div" style="display: none;">
+            <p class="reviews-title">Avalie e clique no botão avaliar produto</p>
+
+            <form class="reviews-form__form" id="review-form" onsubmit="reviewSubmit(event)">
+                <textarea class="reviews-form__textarea" id="review-form-text" placeholder="Comente sua experiência..." required></textarea>
+
+                <div class="reviews-form__bottom">
+                    <select class="reviews-form__select" id="review-form-rating" name="review-form-rating" required>
+                        <option value="1">Muito Ruim</option>
+                        <option value="2">Ruim</option>
+                        <option value="3">Bom</option>
+                        <option value="4">Muito Bom</option>
+                        <option value="5" selected>Excelente</option>
+                    </select>
+
+                    <button class="reviews-form__submit" type="submit">Avaliar produto</button>
+                </div>
+
+                <div class="reviews-form__alert" id="alert-review"></div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="reviews-client" id="reviews-client">
+        {{~ if reviews && reviews.size > 0 ~}}
+        <div class="reviews-client__content">
+            {{~ for review in reviews ~}}
+            {{~ rating = review.rating | string.to_int ~}}
+            <div class="reviews-client__item">
+                <p class="reviews-client__comment">
+                    {{review.review}}
+                </p>
+
+                <div class="reviews-client__column">
+                    <div class="reviews-client__stars">
+                        {{~ for i in 1..5~}}
+                        {{~ if i<= rating ~}} <span class="reviews-star__on"></span>
+                            {{~ else ~}}
+                            <span class="reviews-star__off"></span>
+                            {{~ end ~}}
+                            {{~ end ~}}
+                    </div>
+                    <div class="reviews-client__user">
+                        <p class="reviews-client__name">{{review.customer}}</p>
+                        <p class="reviews-client__time">
+                            {{review.review_date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {{~ end ~}}
+        </div>
+        {{~ else ~}}
+        <p class="reviews-empty">O produto não tem avaliações.</p>
+        {{~end~}}
+    </div>
+</div>

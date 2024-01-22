@@ -1,0 +1,13 @@
+{{~ if products?.items # offset pagination case ~}}
+<div class="showcase-list">
+    {{ for item in products?.items }}
+    {{ spot product: item }}
+    {{ end }}
+</div>
+{{~ else if products?.edges # cursor pagination case ~}}
+<div class="showcase-list">
+    {{ for productEdge in products?.edges }}
+    {{ spot product: productEdge.node }}
+    {{ end }}
+</div>
+{{~ end ~}}

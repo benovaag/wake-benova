@@ -1,0 +1,140 @@
+.category {
+    .category-empty {
+        font-size: 18px;
+        line-height: 18px;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-weight: 500;
+    }
+
+    .category-filter__banner {
+        @include device(mobile) {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+
+            .category-filter, .category-sort {
+                width: 50%;
+            }
+        }
+    }
+
+    .category-column {
+        .category-order {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+    
+            @include device(mobile) {
+                display: none;
+            }
+        }
+    }
+
+    .category-total {
+        font-size: 14px;
+        line-height: 14px;
+        color: #232323;
+        font-weight: 500;
+        opacity: 0.5;
+    }
+
+    .category-main {
+
+        @include device(desktop) {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 75px;
+        }
+
+        @include device(mobile) {
+            margin-bottom: 40px;
+        }
+    }
+
+    .category-filters {
+        @include device(mobile) {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+        }
+
+        .category-filter__click {
+            @include device(desktop) {
+                display: none;
+            }
+
+            @include device(mobile) {
+                flex: 1;
+                background: #F6F6F6;
+                border: 1px solid #F6F6F6;
+                color: #1D1D1B;
+                font-size: 14px;
+                text-transform: uppercase;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 5px;
+                height: 40px;
+
+                &:after {
+                    content: "";
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15.787' height='15.821' viewBox='0 0 15.787 15.821'%3E%3Cg id='Ícone_filtro' data-name='Ícone filtro' transform='matrix(0.035, 0.999, -0.999, 0.035, 305.982, -10.403)'%3E%3Cpath id='path823' d='M12.774.264A2.782,2.782,0,0,0,10.1,2.348H.982a.7.7,0,1,0,0,1.389H10.1A2.77,2.77,0,1,0,12.774.264Zm0,1.387A1.388,1.388,0,1,1,11.385,3.04a1.378,1.378,0,0,1,1.389-1.389ZM7.92,5.124A2.78,2.78,0,0,0,5.244,7.2H.982a.7.7,0,1,0,0,1.389H5.245a2.758,2.758,0,0,0,5.345,0h4.262a.694.694,0,1,0,0-1.389h-4.26A2.772,2.772,0,0,0,7.92,5.124Zm0,1.382A1.388,1.388,0,1,1,6.532,7.894,1.378,1.378,0,0,1,7.92,6.505ZM3.061,9.977a2.775,2.775,0,1,0,2.675,3.467h9.115a.694.694,0,1,0,0-1.389H5.735A2.781,2.781,0,0,0,3.061,9.977Zm0,1.387a1.388,1.388,0,1,1-1.389,1.387A1.377,1.377,0,0,1,3.061,11.364Z' transform='translate(0 290.65)' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E%0A");
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    width: 15px;
+                    height: 16px;
+                    transition: all .6s ease-in-out;
+                }
+            }
+        }
+    }
+
+    .category-column {
+        @include device(desktop) {
+            width: 80%;
+        }
+
+        .banner-category {
+            img {
+                padding-bottom: 30px;
+            }
+        }
+    }
+
+    .category-filter__banner {
+        @include device(desktop) {
+            width: 27%;
+            max-width: 357px;
+
+            .category-sort, .category-filter__button-close {
+                display: none;
+            }
+        }
+    }
+
+    .category-banner {
+        @include device(mobile) {
+            display: none;
+        }
+    }
+
+    .category-bottom {
+
+        .pagination {
+            display: block;
+
+            @include device(desktop) {
+                padding-top: 75px;
+            }
+    
+            @include device(mobile) {
+                padding-top: 40px;
+            }
+        }
+    }
+}

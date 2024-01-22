@@ -1,0 +1,81 @@
+.categories {
+
+  .banner-categories__container {
+    margin: 50px 0;
+  }
+
+  .banner-categories__href {
+    background: #C9C9C9;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+
+    @include device(desktop) {
+      &:hover .banner-categories__image {
+          transform: scale(1.1);
+      }
+
+      .banner-categories__image {
+          transition: .2s linear;
+      }
+    }
+  }
+
+  .banner-categories__subtitle {
+    content: attr(title);
+    display: block;
+    color: #232323;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 auto;
+
+    @include device(desktop) {
+      font-size: 16px;
+    }
+
+    @include device(mobile) {
+        font-size: 12px;
+    }
+  }
+
+  .banner-categories__content {
+    margin: 0 10px;
+  }
+
+  .slick-dots {
+    bottom: -35px;
+  }
+
+  .slick-dots {
+    li {
+      width: 14px;
+      height: 14px;
+
+      button {
+        width: 14px;
+        height: 14px;
+
+        &:before {
+          width: 14px;
+          height: 14px;
+          background: transparent;
+          border: 1px solid #0fae5a;
+          border-radius: 50%;
+          content: "";
+          opacity: 1;
+        }
+      }
+
+      &.slick-active {
+        button {
+          &:before {
+            background: #0fae5a;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}

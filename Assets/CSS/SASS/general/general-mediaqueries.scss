@@ -1,0 +1,15 @@
+$desktop: 1026px;
+$mobile: 1025px;
+
+@mixin device($size) {
+    @if $size == desktop {
+        @media screen and (min-width: #{$desktop}) {
+            @content;
+        }
+    } 
+    @else if $size == mobile {
+        @media screen and (max-width: #{$mobile}) {
+          @content;
+        }
+    }
+}

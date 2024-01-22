@@ -1,0 +1,26 @@
+{{ ##
+Description: Renders checkbox fields to filter product price
+Params:
+- price_ranges: price ranges associated with the search
+Usage:
+category_filterPriceRange price_ranges: data_search.aggregations.price_ranges
+## }}
+
+<div class="filter-combo">
+    <p class="filter-name filter-dropdown">Faixas de Preço</p>
+    <ul class="filter-items" id="itemList">
+        {{ for range in price_ranges }}
+        <li class="filter-items__item">
+            {{ if range.quantity > 0 }}
+            <input class="filter-items__check" type="checkbox" id='{{ range.range }}' name='{{ range.range }}' onchange="setRangePriceFilter(this.id);">
+            {{ else }}
+            <input class="filter-items__check" type="checkbox" id='{{ range.range }}' name='{{ range.range }}' onchange="setRangePriceFilter(this.id);">
+            {{ end }}
+            <span class="filter-items__checkmark"></span>
+            <label class="filter-items__name" for="{{ range.range }}">R$ {{ range.range }} <span>( {{ range.quantity }} )</span> </label>
+        </li>
+        {{ end }}
+    </ul>
+
+    <button id="verMaisBtn" style="display: none;">+ Veja mais</button>
+</div>

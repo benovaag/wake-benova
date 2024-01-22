@@ -1,0 +1,141 @@
+.newsletter {
+    @include device(desktop) {
+        padding: 62px 0;
+    }
+
+    @include device(mobile) {
+        padding: 48px 0 0 0;
+    }
+
+    .newsletter-columns {
+        .newsletter-titles {
+
+            .newsletter-title {
+                color: #FFFFFF;
+                font-weight: 600;
+                text-align: center;
+                padding-bottom: 5px;
+
+                @include device(desktop) {
+                    font-size: 22px;
+                }
+
+                @include device(mobile) {
+                    font-size: 16px;
+                }
+            }
+
+            .newsletter-subtitle {
+                color: #FFFFFF;
+                font-weight: 300;
+                text-align: center;
+                padding-top: 5px;
+                padding-bottom: 30px;
+
+                @include device(desktop) {
+                    font-size: 16px;
+                    line-height: 18px;
+                }
+
+                @include device(mobile) {
+                    font-size: 14px;
+                    line-height: 16px;
+                }
+            }
+        }
+
+        .newsletter-form {
+            width: 100%;
+            position: relative;
+
+            @include device(desktop) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+
+                &:before, &:after {
+                    content: "";
+                    height: 1px;
+                    width: 100%;
+                    background: #707070;
+                }
+            }
+
+            .newsletter-form__fields {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                width: 100%;
+
+                @include device(mobile) {
+                    flex-direction: column;
+                }
+
+                .newsletter-form__input {
+                    background: #FFFFFF;
+                    border: none;
+                    width: 100%;
+                    text-indent: 30px;
+                    font-weight: 400;
+                    transition: .2s linear;
+                    color: #232323;
+                    border-radius: 5px;
+
+                    &:placeholder {
+                        color: #232323;
+                    }
+
+                    @include device(desktop) {
+                        width: 370px;
+                        height: 62px;
+                        font-size: 16px;
+                    }
+    
+                    @include device(mobile) {
+                        height: 56px;
+                        font-size: 14px;
+                    }
+                }
+
+                .newsletter-form__button {
+                    background: #10C967;
+                    border: none;
+                    color: #fff;
+                    font-weight: 500;
+                    width: 100%;
+                    transition: .2s linear;
+                    cursor: pointer;
+                    border-radius: 5px;
+
+                    @include device(desktop) {
+                        font-size: 14px;
+                        width: 155px;
+                        margin-left: -10px;
+                    }
+
+                    @include device(mobile) {
+                        font-size: 12px;
+                        padding: 20px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+
+            #alert-newsletter {
+                text-align: center;
+                font-size: 14px;
+                color: #207817;
+                font-weight: 600;
+                padding-top: 15px;
+
+                @include device(desktop) {
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    bottom: -35px;
+                }
+            }
+        }
+    }
+}

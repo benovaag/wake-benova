@@ -1,0 +1,80 @@
+{{ ##
+Description: Renders the product prices and installments
+Params:
+- prices: product prices
+- displayed_installment: [optional] filter installment options to display from the specified plan.
+Check the display name of the installment plans on Admin. (e.g., "Boleto Yapay")
+If not set, the best installment among the available options will be displayed instead
+Usage:
+product_price prices: product.prices displayed_installment: "Boleto Yapay"
+## }}
+
+{{~ best_installment = {total: 999999999.0, value:0.0, number: 0, fees:false, name:"name"} ~}}
+{{~ installment_plans = prices.installment_plans ~}}
+
+{{func select_installments(plans) #Function used to filter installment_plans
+contains = false
+if displayed_installment && (displayed_installment | string.contains plans.display_name)
+contains = true
+end
+ret contains
+end}}
+
+{{#Function that calculates the best installment option available (lowest price with the greatest number of installments )
+func best_option(installment_plans)
+for plan in installment_plans
+for installment in plan.installments
+total = installment.number | math.times installment.value
+if (!installment.fees) && (installment.number >= best_installment.number)
+best_installment.total = total
+best_installment.value = installment.value
+best_installment.number = installment.number
+best_installment.fees = installment.fees
+best_installment.name = plan.display_name
+best_installment.discount = installment.discount
+end
+end
+end
+ret best_installment
+end}}
+
+{{ if prices.list_price - prices.price > 0 }}
+<div class="spot-prices">
+    <p class="spot-price__before"><span class="spot-price__line">{{ prices.list_price | math.format "c" "pt-BR" }}</span></p>
+    <p class="spot-price__after">{{ prices.price | math.format "c" "pt-BR" }}</p>
+</div>
+{{ else }}
+{{~ for item in installment_plans ~}}
+{{~ if item?.display_name == "PIX" ~}}
+{{~ if !(best_installment | string.contains "PIX") ~}}
+{{~ $diff_discount = prices.price - item?.installments[0]?.value ~}}
+{{~ $percentage_discount = ($diff_discount / prices.price) * 100 ~}}
+<p class="spot-price__after single-price">{{ item?.installments[0]?.value | math.format "c" "pt-BR" }}</p>
+{{~ end ~}}
+{{~ end ~}}
+{{~ end ~}}
+{{ end }}
+
+{{~ if installment_plans ~}}
+
+<div class="spot-payment">
+
+
+    {{ best_installment = installment_plans | best_option }}
+
+
+    <!-- Exibe as demais formas de pagamento -->
+    {{~ if best_installment | string.contains "Boleto" ~}}
+    <p class="spot-payment__type"><span class="spot-payment__color">{{best_installment.value | math.format "c" "pt-BR"}}</span>no boleto</p>
+    {{~ else if best_installment | string.contains "Cartão" ~}}
+    <p class="product-payment__type" style="margin-top: 10px;max-width:330px;">
+        ou <b>{{prices.price | math.format "c" "pt-BR"}}</b>
+        em até {{best_installment.number}}x de {{best_installment.value | math.format "c" "pt-BR"}} sem juros no cartão</p>
+    {{~ else ~}}
+    <p class="product-payment__type" style="margin-top: 10px;max-width:330px;">
+        ou <b>{{prices.price | math.format "c" "pt-BR"}}</b>
+        em até {{best_installment.number}}x de {{best_installment.value | math.format "c" "pt-BR"}} sem juros no cartão</p>
+    {{~ end ~}}
+
+</div>
+{{~ end ~}}

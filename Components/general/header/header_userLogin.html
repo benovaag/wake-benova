@@ -1,0 +1,35 @@
+{{~ login_url = checkout_url + "Login/Authenticate?returnUrl=" ~}}
+<input type="hidden" id="login-url" value="{{ login_url }}">
+
+<div class="user-not__logged">
+    <a class="user-field user-field__icon" href="{{store.urls.checkout}}MinhaConta" title="Ir para Minha Conta">
+    </a>
+</div>
+
+<a class="user-logged" href="{{store.urls.checkout}}MinhaConta">
+    <div class="user-field user-field__icon">
+        <p class="user-mobile">Olá <span class="user-name">Faça seu login ou cadastre-se</span></p>
+    </div>
+</a>
+
+<!-- <div id="modal-login" class="modal-login">
+    <div class="modal-login__header">
+        <p class="modal-login__title">Esta é sua área de login</p>
+        <span class="modal-login__close" onclick="loginMouseOut()" title="Fechar modal de login"></span>
+    </div>
+    <div class="modal-login__content">
+        <form class="form-recaptcha" action="{{store.urls.checkout}}Login/Authenticate?returnUrl={{store.urls.checkout}}MinhaConta/Pedido/" method="post" autocomplete="off">
+            <input type="text" name="input" autocomplete="username" placeholder="Seu login" class="form-login">
+            <input type="password" name="senha" autocomplete="current-password" placeholder="Sua senha" class="form-login">
+
+            <button type="submit" class="form-login__submmit">Entrar</button>
+            <a href="{{store.urls.checkout}}Login/Authenticate" class="form-login__forgot">Esqueceu sua senha?</a>
+        </form>
+
+        <div class="modal-login__sign">
+            <span class="login-sign__text">Ainda não tem Cadastro?</span>
+
+            <a href="{{store.urls.checkout}}login/cadastro" class="login-sign__link">Cadastre-se Aqui</a>
+        </div>
+    </div>
+</div> -->

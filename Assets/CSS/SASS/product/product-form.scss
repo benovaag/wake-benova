@@ -1,0 +1,92 @@
+.attribute-container {
+
+  .attribute-container__title {
+    font-size: 14px;
+    line-height: 14px;
+    color: #000;
+    font-weight: bold;
+    margin-top: 25px;
+    text-transform: uppercase;
+  }
+
+  .attribute-container__item {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+  }
+
+  .attribute-container__select {
+
+      .attribute-select {
+          position: absolute;
+          clip: rect(0, 0, 0, 0);
+
+
+          &:checked+.attribute-selection,
+          &:checked+.attribute-selection__image {
+              background-color: #000;
+              border: 1px solid #000;
+              color: #fff;
+              transition: ease-in-out .3s;
+          }
+
+          &:disabled+.attribute-selection {
+              background-color: #EAEAEA;
+              color: #A5A5A5;
+              border: 1px solid #EAEAEA;
+          }
+
+
+      }
+
+      .attribute-selection__image {
+          border: 1px solid #CCCCCC;
+          cursor: pointer;
+          transition: ease-in-out .2s;
+          max-width: 50px;
+
+          &:hover {
+              border: 1px solid #000;
+              transition: ease-in-out .3s;
+          }
+      }
+
+      .attribute-selection__color img {
+        border: 1px solid #CCCCCC;
+        cursor: pointer;
+        transition: ease-in-out .2s;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+      }
+
+      .attribute-selection {
+        border: 1px solid #CCCCCC;
+        cursor: pointer;
+        transition: ease-in-out .2s;
+        color: #000000;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        padding: 5px;
+        min-width: 35px;
+        min-height: 35px;
+        font-size: 16px;
+
+          &:hover {
+              background-color: #000000;
+              border: 1px solid #000000;
+              color: #fff;
+              transition: ease-in-out .3s;
+          }
+
+          &.attribute-select__off {
+            background: #F3F3F3;
+            color: #CCCCCC!important;
+          }
+      }
+  }
+}

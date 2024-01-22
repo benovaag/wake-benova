@@ -1,0 +1,17 @@
+<div class="product-images">
+    <div class="product-thumbnails">
+        {{ for image in images }}
+        <div class="product-thumbnails__item">
+            <img src="{{ image.url }}" class="product-thumbnails__image" alt="image_{{ math.uuid }}">
+        </div>
+        {{ end }}
+    </div>
+    <div class="product-image product-principal" onmousemove="zoom(event)">
+        {{~ firstImage = images | array.first ~}}
+        {{ if firstImage }}
+        <img src="{{ firstImage.url }}" class="product-image__image" alt="image_{{ math.uuid }}">
+        {{ end }}
+    </div>
+</div>
+
+<!-- <div class="galeriaImg"></div> -->

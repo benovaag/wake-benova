@@ -1,0 +1,52 @@
+{{ ##
+Description: Renders attributes of type "DIV com cor"
+Params:
+- attribute_selections: product attribute selections data
+- product_id: page product ID
+- is_secondary_product : if this is an attribute of a subproduct, like in a buy list, or in a buytogether component
+- on_click : the name of the function call for the component onClick
+Usage:
+product_combo_attribute attribute_selections: attribute_selections product_id: product_id
+## }}
+
+{{func select_color(attr)
+ret attr.display_type == "DIV com cor"
+end}}
+{{~ divAttributes = attribute_selections.selections | array.filter @select_color ~}}
+
+{{~ if divAttributes ~}}
+<div class="attribute-container">
+    <div class="attribute-container__itens">
+        {{~ for attr in divAttributes ~}}
+        <p class="attribute-container__title">{{ attr.name }}</p>
+        <ul class="attribute-container__item">
+            {{~ for value in attr.values ~}}
+            {{~ if value.selected ~}}
+            <input type="hidden" id="hidden-selected-attribute-{{product_id}}-{{ attr.attribute_id }}" name="hidden-selected-attribute-{{ attr.attribute_id }}" value="{{ value.value }}">
+            {{~ end ~}}
+
+            {{~ optionId = attr.attribute_id + "__" + value.value + "__" + product_id ~}}
+            {{~ if value.print_url ~}}
+            {{~ if attr.vary_by_parent ~}}
+            {{~ if value.available ~}}
+            <li class="attribute-container__select">
+                <input type="radio" class="attribute-select" autocomplete="off" id="{{ attr.attribute_id + " __" + value.value + "__" + product_id }}" product-id="{{ product_id }}" attribute-id="{{ attr.attribute_id }}" attribute-value="{{ value.value }}" {{~ if attr.vary_by_parent ~}} onclick='location = this.value' value='/{{ value.alias }}' {{~ else ~}} onclick="SelectAttribute(this);" value="{{ value.value }}" {{~ end ~}} {{~ if value.selected ~}} checked {{~ end ~}} {{~ if !value.available ~}} {{~ end ~}}>
+                <img {{ if !value.available }} class="attribute-selection__color attribute-select__off" {{ end }} class="attribute-selection__color" src="/colorhandler?cor={{ value.value | string.downcase }}" alt="Cor {{ value.value }}" title="{{ value.value }}">
+            </li>
+            {{~ end ~}}
+            {{~ else ~}}
+            {{~ if value.available ~}}
+            <li class="attribute-container__select">
+                <input attribute-id="{{ attr.attribute_id }}" product-id="{{ product_id }}" type="radio" class="attribute-select" onclick="SelectAttribute(this);" value="{{ value.value }}" id="{{ optionId }}" autocomplete="off" {{ if value.selected }} checked {{ end }} {{ if !value.available }} {{ end }}>
+
+                <label class="attribute-selection__color selection-success" for="{{ optionId }}"><img src="/colorhandler?cor={{ value.value | string.downcase }}" alt="Color {{ value.value }}" title="{{ value.value }}" height="50" width="50"></label>
+            </li>
+            {{~ end ~}}
+            {{~ end ~}}
+            {{~ end ~}}
+            {{~ end ~}}
+        </ul>
+        {{~ end ~}}
+    </div>
+</div>
+{{~ end ~}}
